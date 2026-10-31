@@ -25,15 +25,15 @@
   <AyameICCT_Convert_GranuleToSheet_Bulk.description>将一定量粒材压片</AyameICCT_Convert_GranuleToSheet_Bulk.description>
   <AyameICCT_Convert_GranuleToSheet_Bulk.jobString>正在将一定量粒材压片。</AyameICCT_Convert_GranuleToSheet_Bulk.jobString>
   <AyameICCT_Pack_Meal_5.label>包装5份烹饪食品</AyameICCT_Pack_Meal_5.label>
-  <AyameICCT_Pack_Meal_5.description>使用食品级塑料制作保鲜膜和餐盒，将加工过的食品封装为包装生存食品。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_5.description>
+  <AyameICCT_Pack_Meal_5.description>使用食品级塑料制作保鲜膜和餐盒，将加工过的食品封装为包装生存食品。</AyameICCT_Pack_Meal_5.description>
   <AyameICCT_Pack_Meal_5.jobString>正在包装5份烹饪食品。</AyameICCT_Pack_Meal_5.jobString>
   <AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>
   <AyameICCT_Pack_Meal_9.label>包装9份烹饪食品</AyameICCT_Pack_Meal_9.label>
-  <AyameICCT_Pack_Meal_9.description>以批量规格封装加工食品。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_9.description>
+  <AyameICCT_Pack_Meal_9.description>以批量规格封装加工食品。</AyameICCT_Pack_Meal_9.description>
   <AyameICCT_Pack_Meal_9.jobString>正在包装9份烹饪食品。</AyameICCT_Pack_Meal_9.jobString>
   <AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>
   <AyameICCT_Pack_Meal_13.label>包装13份烹饪食品</AyameICCT_Pack_Meal_13.label>
-  <AyameICCT_Pack_Meal_13.description>以批量规格封装加工食品，略微损耗食物，节省一些包装材料。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_13.description>
+  <AyameICCT_Pack_Meal_13.description>以批量规格封装加工食品，略微损耗食物，节省一些包装材料。</AyameICCT_Pack_Meal_13.description>
   <AyameICCT_Pack_Meal_13.jobString>正在包装13份烹饪食品。</AyameICCT_Pack_Meal_13.jobString>
   <AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>
   <AyameICCT_Make_ComponentIndustrial_Plastic.label>使用工程塑料制作零部件x1</AyameICCT_Make_ComponentIndustrial_Plastic.label>

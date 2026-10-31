@@ -25,15 +25,15 @@
   <AyameICCT_Convert_GranuleToSheet_Bulk.description>Press a large batch of plastic granules into sheets.</AyameICCT_Convert_GranuleToSheet_Bulk.description>
   <AyameICCT_Convert_GranuleToSheet_Bulk.jobString>Pressing plastic granules into sheets in bulk.</AyameICCT_Convert_GranuleToSheet_Bulk.jobString>
   <AyameICCT_Pack_Meal_5.label>package prepared food x5</AyameICCT_Pack_Meal_5.label>
-  <AyameICCT_Pack_Meal_5.description>Make food-grade plastic wrap and containers to seal prepared foods into packaged survival meals. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</AyameICCT_Pack_Meal_5.description>
+  <AyameICCT_Pack_Meal_5.description>Make food-grade plastic wrap and containers to seal prepared foods into packaged survival meals.</AyameICCT_Pack_Meal_5.description>
   <AyameICCT_Pack_Meal_5.jobString>Packaging prepared food x5.</AyameICCT_Pack_Meal_5.jobString>
   <AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>prepared food</AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>
   <AyameICCT_Pack_Meal_9.label>package prepared food x9</AyameICCT_Pack_Meal_9.label>
-  <AyameICCT_Pack_Meal_9.description>Package prepared foods in bulk. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</AyameICCT_Pack_Meal_9.description>
+  <AyameICCT_Pack_Meal_9.description>Package prepared foods in bulk.</AyameICCT_Pack_Meal_9.description>
   <AyameICCT_Pack_Meal_9.jobString>Packaging prepared food x9.</AyameICCT_Pack_Meal_9.jobString>
   <AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>prepared food</AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>
   <AyameICCT_Pack_Meal_13.label>package prepared food x13</AyameICCT_Pack_Meal_13.label>
-  <AyameICCT_Pack_Meal_13.description>Package prepared foods in bulk, losing a little food while saving some packaging material. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</AyameICCT_Pack_Meal_13.description>
+  <AyameICCT_Pack_Meal_13.description>Package prepared foods in bulk, losing a little food while saving some packaging material.</AyameICCT_Pack_Meal_13.description>
   <AyameICCT_Pack_Meal_13.jobString>Packaging prepared food x13.</AyameICCT_Pack_Meal_13.jobString>
   <AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>prepared food</AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>
   <AyameICCT_Make_ComponentIndustrial_Plastic.label>make component using engineering plastic</AyameICCT_Make_ComponentIndustrial_Plastic.label>

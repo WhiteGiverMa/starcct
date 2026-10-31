@@ -296,7 +296,7 @@
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_5</defName>
     <label>package prepared food x5</label>
-    <description>Make food-grade plastic wrap and containers to seal prepared foods into packaged survival meals. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <description>Make food-grade plastic wrap and containers to seal prepared foods into packaged survival meals.</description>
     <jobString>Packaging prepared food x5.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
@@ -347,7 +347,7 @@
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_9</defName>
     <label>package prepared food x9</label>
-    <description>Package prepared foods in bulk. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <description>Package prepared foods in bulk.</description>
     <jobString>Packaging prepared food x9.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
@@ -398,7 +398,7 @@
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_13</defName>
     <label>package prepared food x13</label>
-    <description>Package prepared foods in bulk, losing a little food while saving some packaging material. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <description>Package prepared foods in bulk, losing a little food while saving some packaging material.</description>
     <jobString>Packaging prepared food x13.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
