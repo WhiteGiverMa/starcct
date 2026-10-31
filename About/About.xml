@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ModMetaData>
+  <name>星际茶餐厅 Interstellar Cha Chaan Teng</name>
+  <author>Ayame</author>
+  <packageId>Ayame.InterstellarChaChaanTeng</packageId>
+  <supportedVersions>
+    <li>1.7</li>
+  </supportedVersions>
+  <description>依照星际茶餐厅企业标准生产食品级塑料颗粒与片材，封装已有烹饪食品。支持塑料形态转换与工程塑料零部件制造。</description>
+</ModMetaData>

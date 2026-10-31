@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>AyameICCT_PlasticGranule</defName>
+    <label>食品级塑料颗粒</label>
+    <description>5号PP塑料粒材，根据星际茶餐厅的《食品安全企业标准 食品接触用塑料材料及制品》规格制作。不久前茶餐厅发布了这份标准，用于规范茶餐厅殖民人员在边缘世界的食品经营事业。一些当地的工业派系也会以此作为指导性的参考。对于殖民地充满智慧的人民来说，掌握基本有机合成技术即可自行生产。这些粒材用相同材料的密封小塑料袋装好。</description>
+    <possessionCount>10</possessionCount>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlasticGranule</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.90</drawSize>
+    </graphicData>
+    <stackLimit>500</stackLimit>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <MarketValue>0.1</MarketValue>
+      <Mass>0.1</Mass>
+      <Flammability>0.7</Flammability>
+      <DeteriorationRate>1.0</DeteriorationRate>
+      <Beauty>-6</Beauty>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+  </ThingDef>
+  <ThingDef ParentName="ResourceBase">
+    <defName>AyameICCT_PlasticSheet</defName>
+    <label>食品级塑料片</label>
+    <description>聚丙烯塑料片材，它看着就很像保鲜膜，虽然它们不是同一种塑料，但在边缘世界，没那么多可讲究的了。根据星际茶餐厅的 QB 4806.7-5498 规格制作，从茶餐厅买到的每一份饭的塑料餐盒都符合这个标准……希望如此吧。</description>
+    <possessionCount>10</possessionCount>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlasticSheet</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.90</drawSize>
+    </graphicData>
+    <stackLimit>75</stackLimit>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <MarketValue>0.16</MarketValue>
+      <Mass>0.16</Mass>
+      <Flammability>0.7</Flammability>
+      <DeteriorationRate>1.0</DeteriorationRate>
+      <Beauty>-6</Beauty>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>
