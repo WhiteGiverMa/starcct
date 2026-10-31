@@ -51,6 +51,8 @@ RimWorld 1.7 模组。生产食品级聚丙烯塑料颗粒和片材，将加工�
 
 ## 构建
 
+塑料贴图的程序化生成入口、隔离预览命令与历史设计材料见 [Tools/Plastic](Tools/Plastic/README.md)。
+
 本机 RimWorld 1.7.4995 rev309 使用 .NET 10 / Waylith，程序集针对 `net10.0` 构建：
 
 ```sh
