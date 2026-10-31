@@ -14,7 +14,7 @@ namespace AyameICCT
         public static bool CanPack(ThingDef def, PackagingSettings settings)
         {
             if (def.category != ThingCategory.Item || def.ingestible == null
-                || def.IsCorpse || def == ThingDefOf.MealSurvivalPack)
+                || def.IsCorpse || (def == ThingDefOf.MealSurvivalPack && !settings.AllowRepackaging))
             {
                 return false;
             }
@@ -71,7 +71,8 @@ namespace AyameICCT
 
                 foreach (ThingDef def in foods)
                 {
-                    if (recipe.products.Any(product => product.thingDef == def))
+                    if (recipe.products.Any(product => product.thingDef == def)
+                        && !(def == ThingDefOf.MealSurvivalPack && settings.AllowRepackaging))
                     {
                         continue;
                     }

@@ -6,6 +6,8 @@
   <AyameICCT_IncludeNutrientPasteTip>允许三种食品包装配方使用营养膏作为原料。</AyameICCT_IncludeNutrientPasteTip>
   <AyameICCT_IncludeKibble>可包装的食品包括粗饲料</AyameICCT_IncludeKibble>
   <AyameICCT_IncludeKibbleTip>允许三种食品包装配方使用粗饲料作为原料。</AyameICCT_IncludeKibbleTip>
-  <AyameICCT_FoodRules>自动从全部已加载物品定义中识别可食用、有营养值的加工食品，包括餐食、干肉饼、婴儿食物与营养饮品。排除生食原料、尸体和包装生存食品。失能机关的 C 口粮仅在包装时按每份 2.0 营养值计量。</AyameICCT_FoodRules>
+  <AyameICCT_AllowRepackaging>包装生存食品可以再包装</AyameICCT_AllowRepackaging>
+  <AyameICCT_AllowRepackagingTip>……真的要开启吗w</AyameICCT_AllowRepackagingTip>
+  <AyameICCT_FoodRules>自动从全部已加载物品定义中识别可食用、有营养值的加工食品，包括餐食、干肉饼、婴儿食物与营养饮品。排除生食原料和尸体，包装生存食品默认不可再包装。失能机关的 C 口粮仅在包装时按每份 2.0 营养值计量。</AyameICCT_FoodRules>
   <AyameICCT_FilterChanges>设置立即更新包装配方。已有订单保留各自的原料选择；请在订单的原料筛选中勾选新开放的食品，或新建订单。</AyameICCT_FilterChanges>
 </LanguageData>

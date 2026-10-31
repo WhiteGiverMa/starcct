@@ -6,6 +6,8 @@
   <AyameICCT_IncludeNutrientPasteTip>Allow nutrient paste meals as ingredients in the three food-packaging recipes.</AyameICCT_IncludeNutrientPasteTip>
   <AyameICCT_IncludeKibble>Packable foods include kibble</AyameICCT_IncludeKibble>
   <AyameICCT_IncludeKibbleTip>Allow kibble as an ingredient in the three food-packaging recipes.</AyameICCT_IncludeKibbleTip>
-  <AyameICCT_FoodRules>Packable foods are discovered automatically from all loaded item definitions: edible, nutritious prepared products, including meals, pemmican, baby food and nutritious drinks. Raw ingredients, corpses and packaged survival meals are excluded. The Dead Man's Switch C-rations count as 2.0 nutrition each for packaging only.</AyameICCT_FoodRules>
+  <AyameICCT_AllowRepackaging>Allow repackaging packaged survival meals</AyameICCT_AllowRepackaging>
+  <AyameICCT_AllowRepackagingTip>...Are you really sure you want to enable this? lol</AyameICCT_AllowRepackagingTip>
+  <AyameICCT_FoodRules>Packable foods are discovered automatically from all loaded item definitions: edible, nutritious prepared products, including meals, pemmican, baby food and nutritious drinks. Raw ingredients and corpses are excluded; packaged survival meals cannot be repackaged by default. The Dead Man's Switch C-rations count as 2.0 nutrition each for packaging only.</AyameICCT_FoodRules>
   <AyameICCT_FilterChanges>Settings update the packaging recipes immediately. Existing bills retain their ingredient choices; enable newly available foods in the bill's ingredient filter, or create a new bill.</AyameICCT_FilterChanges>
 </LanguageData>
