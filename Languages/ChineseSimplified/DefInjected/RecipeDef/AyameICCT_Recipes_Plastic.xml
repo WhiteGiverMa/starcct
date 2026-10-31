@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AyameICCT_Make_PlasticGranule.label>制取少量聚丙烯塑料粒</AyameICCT_Make_PlasticGranule.label>
+  <AyameICCT_Make_PlasticGranule.description>制取少量食品级5号PP塑料。</AyameICCT_Make_PlasticGranule.description>
+  <AyameICCT_Make_PlasticGranule.jobString>正在制取少量聚丙烯塑料粒。</AyameICCT_Make_PlasticGranule.jobString>
+  <AyameICCT_Make_PlasticGranule_Bulk.label>制取一定量的聚丙烯塑料粒</AyameICCT_Make_PlasticGranule_Bulk.label>
+  <AyameICCT_Make_PlasticGranule_Bulk.description>制取一定量的5号PP塑料。</AyameICCT_Make_PlasticGranule_Bulk.description>
+  <AyameICCT_Make_PlasticGranule_Bulk.jobString>正在制取一定量的聚丙烯塑料粒。</AyameICCT_Make_PlasticGranule_Bulk.jobString>
+  <AyameICCT_Make_PlasticSheet.label>制取少量聚丙烯塑料片材</AyameICCT_Make_PlasticSheet.label>
+  <AyameICCT_Make_PlasticSheet.description>制取少量食品级5号PP塑料。</AyameICCT_Make_PlasticSheet.description>
+  <AyameICCT_Make_PlasticSheet.jobString>正在制取少量聚丙烯塑料片材。</AyameICCT_Make_PlasticSheet.jobString>
+  <AyameICCT_Make_PlasticSheet_Bulk.label>制取一定量的聚丙烯塑料片材</AyameICCT_Make_PlasticSheet_Bulk.label>
+  <AyameICCT_Make_PlasticSheet_Bulk.description>制取一定量的5号PP塑料。</AyameICCT_Make_PlasticSheet_Bulk.description>
+  <AyameICCT_Make_PlasticSheet_Bulk.jobString>正在制取一定量的聚丙烯塑料片材。</AyameICCT_Make_PlasticSheet_Bulk.jobString>
+  <AyameICCT_Convert_SheetToGranule.label>将少量塑料片材转化为粒材</AyameICCT_Convert_SheetToGranule.label>
+  <AyameICCT_Convert_SheetToGranule.description>将少量塑料片材转化为粒材</AyameICCT_Convert_SheetToGranule.description>
+  <AyameICCT_Convert_SheetToGranule.jobString>正在将少量塑料片材转化为粒材。</AyameICCT_Convert_SheetToGranule.jobString>
+  <AyameICCT_Convert_GranuleToSheet.label>将少量粒材压片</AyameICCT_Convert_GranuleToSheet.label>
+  <AyameICCT_Convert_GranuleToSheet.description>将少量粒材压片</AyameICCT_Convert_GranuleToSheet.description>
+  <AyameICCT_Convert_GranuleToSheet.jobString>正在将少量粒材压片。</AyameICCT_Convert_GranuleToSheet.jobString>
+  <AyameICCT_Convert_SheetToGranule_Bulk.label>将一定量塑料片材转化为粒材</AyameICCT_Convert_SheetToGranule_Bulk.label>
+  <AyameICCT_Convert_SheetToGranule_Bulk.description>将一定量塑料片材转化为粒材</AyameICCT_Convert_SheetToGranule_Bulk.description>
+  <AyameICCT_Convert_SheetToGranule_Bulk.jobString>正在将一定量塑料片材转化为粒材。</AyameICCT_Convert_SheetToGranule_Bulk.jobString>
+  <AyameICCT_Convert_GranuleToSheet_Bulk.label>将一定量粒材压片</AyameICCT_Convert_GranuleToSheet_Bulk.label>
+  <AyameICCT_Convert_GranuleToSheet_Bulk.description>将一定量粒材压片</AyameICCT_Convert_GranuleToSheet_Bulk.description>
+  <AyameICCT_Convert_GranuleToSheet_Bulk.jobString>正在将一定量粒材压片。</AyameICCT_Convert_GranuleToSheet_Bulk.jobString>
+  <AyameICCT_Pack_Meal_5.label>包装5份烹饪食品</AyameICCT_Pack_Meal_5.label>
+  <AyameICCT_Pack_Meal_5.description>使用食品级塑料制作保鲜膜和餐盒，将加工过的食品封装为包装生存食品。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_5.description>
+  <AyameICCT_Pack_Meal_5.jobString>正在包装5份烹饪食品。</AyameICCT_Pack_Meal_5.jobString>
+  <AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_5.ingredients.1.filter.customSummary>
+  <AyameICCT_Pack_Meal_9.label>包装9份烹饪食品</AyameICCT_Pack_Meal_9.label>
+  <AyameICCT_Pack_Meal_9.description>以批量规格封装加工食品。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_9.description>
+  <AyameICCT_Pack_Meal_9.jobString>正在包装9份烹饪食品。</AyameICCT_Pack_Meal_9.jobString>
+  <AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_9.ingredients.1.filter.customSummary>
+  <AyameICCT_Pack_Meal_13.label>包装13份烹饪食品</AyameICCT_Pack_Meal_13.label>
+  <AyameICCT_Pack_Meal_13.description>以批量规格封装加工食品，略微损耗食物，节省一些包装材料。自动支持已加载模组中的营养食品与饮品，营养膏和粗饲料由模组设置控制。失能机关的 C 口粮每份按 2.0 营养值计量。</AyameICCT_Pack_Meal_13.description>
+  <AyameICCT_Pack_Meal_13.jobString>正在包装13份烹饪食品。</AyameICCT_Pack_Meal_13.jobString>
+  <AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>加工食品</AyameICCT_Pack_Meal_13.ingredients.1.filter.customSummary>
+  <AyameICCT_Make_ComponentIndustrial_Plastic.label>使用工程塑料制作零部件x1</AyameICCT_Make_ComponentIndustrial_Plastic.label>
+  <AyameICCT_Make_ComponentIndustrial_Plastic.description>使用工程塑料注塑工艺制作零部件。</AyameICCT_Make_ComponentIndustrial_Plastic.description>
+  <AyameICCT_Make_ComponentIndustrial_Plastic.jobString>正在使用工程塑料制作零部件x1。</AyameICCT_Make_ComponentIndustrial_Plastic.jobString>
+  <AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.label>使用工程塑料制作零部件x4</AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.label>
+  <AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.description>使用注塑工艺批量制作零部件。</AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.description>
+  <AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.jobString>正在使用工程塑料制作零部件x4。</AyameICCT_Make_ComponentIndustrial_Plastic_Bulk.jobString>
+  <AyameICCT_Make_ComponentSpacer_Plastic.label>使用工程塑料制作高级零部件</AyameICCT_Make_ComponentSpacer_Plastic.label>
+  <AyameICCT_Make_ComponentSpacer_Plastic.description>使用特种工程塑料制作高级零部件，需要更加精密的工艺。</AyameICCT_Make_ComponentSpacer_Plastic.description>
+  <AyameICCT_Make_ComponentSpacer_Plastic.jobString>正在使用工程塑料制作高级零部件。</AyameICCT_Make_ComponentSpacer_Plastic.jobString>
+</LanguageData>

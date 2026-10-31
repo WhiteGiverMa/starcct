@@ -2,9 +2,9 @@
 <Defs>
   <RecipeDef>
     <defName>AyameICCT_Make_PlasticGranule</defName>
-    <label>制取少量聚丙烯塑料粒</label>
-    <description>制取少量食品级5号PP塑料。</description>
-    <jobString>正在制取少量聚丙烯塑料粒。</jobString>
+    <label>make polypropylene granules</label>
+    <description>Produce a small batch of food-grade type 5 polypropylene granules.</description>
+    <jobString>Making polypropylene granules.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -43,9 +43,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_PlasticGranule_Bulk</defName>
-    <label>制取一定量的聚丙烯塑料粒</label>
-    <description>制取一定量的5号PP塑料。</description>
-    <jobString>正在制取一定量的聚丙烯塑料粒。</jobString>
+    <label>make polypropylene granules in bulk</label>
+    <description>Produce a large batch of type 5 polypropylene granules.</description>
+    <jobString>Making polypropylene granules in bulk.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -84,9 +84,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_PlasticSheet</defName>
-    <label>制取少量聚丙烯塑料片材</label>
-    <description>制取少量食品级5号PP塑料。</description>
-    <jobString>正在制取少量聚丙烯塑料片材。</jobString>
+    <label>make polypropylene sheets</label>
+    <description>Produce a small batch of food-grade type 5 polypropylene sheets.</description>
+    <jobString>Making polypropylene sheets.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -125,9 +125,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_PlasticSheet_Bulk</defName>
-    <label>制取一定量的聚丙烯塑料片材</label>
-    <description>制取一定量的5号PP塑料。</description>
-    <jobString>正在制取一定量的聚丙烯塑料片材。</jobString>
+    <label>make polypropylene sheets in bulk</label>
+    <description>Produce a large batch of type 5 polypropylene sheets.</description>
+    <jobString>Making polypropylene sheets in bulk.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -166,9 +166,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Convert_SheetToGranule</defName>
-    <label>将少量塑料片材转化为粒材</label>
-    <description>将少量塑料片材转化为粒材</description>
-    <jobString>正在将少量塑料片材转化为粒材。</jobString>
+    <label>convert plastic sheets to granules</label>
+    <description>Convert a small batch of plastic sheets into granules.</description>
+    <jobString>Converting plastic sheets to granules.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -198,9 +198,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Convert_GranuleToSheet</defName>
-    <label>将少量粒材压片</label>
-    <description>将少量粒材压片</description>
-    <jobString>正在将少量粒材压片。</jobString>
+    <label>press plastic granules into sheets</label>
+    <description>Press a small batch of plastic granules into sheets.</description>
+    <jobString>Pressing plastic granules into sheets.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -230,9 +230,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Convert_SheetToGranule_Bulk</defName>
-    <label>将一定量塑料片材转化为粒材</label>
-    <description>将一定量塑料片材转化为粒材</description>
-    <jobString>正在将一定量塑料片材转化为粒材。</jobString>
+    <label>convert plastic sheets to granules in bulk</label>
+    <description>Convert a large batch of plastic sheets into granules.</description>
+    <jobString>Converting plastic sheets to granules in bulk.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -262,9 +262,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Convert_GranuleToSheet_Bulk</defName>
-    <label>将一定量粒材压片</label>
-    <description>将一定量粒材压片</description>
-    <jobString>正在将一定量粒材压片。</jobString>
+    <label>press plastic granules into sheets in bulk</label>
+    <description>Press a large batch of plastic granules into sheets.</description>
+    <jobString>Pressing plastic granules into sheets in bulk.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cremate</effectWorking>
     <soundWorking>Recipe_Cremate</soundWorking>
@@ -295,9 +295,9 @@
   <!-- 自定义计量器：食物按营养、非食物按个数（AyameICCT.dll）；营养投入4.5/8/12为有意损耗设计。 -->
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_5</defName>
-    <label>包装5份烹饪食品</label>
-    <description>使用食品级塑料制作保鲜膜和餐盒，封装已有的烹饪食品。</description>
-    <jobString>正在包装5份烹饪食品。</jobString>
+    <label>package prepared food x5</label>
+    <description>Make food-grade plastic wrap and containers to seal prepared foods into packaged survival meals. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <jobString>Packaging prepared food x5.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
@@ -324,14 +324,7 @@
       </li>
       <li>
         <filter>
-          <customSummary>烹饪食品</customSummary>
-          <categories>
-            <li>FoodMeals</li>
-          </categories>
-          <disallowedThingDefs>
-            <li>MealSurvivalPack</li>
-            <li>MealNutrientPaste</li>
-          </disallowedThingDefs>
+          <customSummary>prepared food</customSummary>
         </filter>
         <count>4.5</count>
       </li>
@@ -340,25 +333,11 @@
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </fixedIngredientFilter>
     <defaultIngredientFilter>
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </defaultIngredientFilter>
     <products>
       <MealSurvivalPack>5</MealSurvivalPack>
@@ -367,9 +346,9 @@
   <!-- 自定义计量器：食物按营养、非食物按个数（AyameICCT.dll）；营养投入4.5/8/12为有意损耗设计。 -->
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_9</defName>
-    <label>包装9份烹饪食品</label>
-    <description>以批量规格封装熟食。</description>
-    <jobString>正在包装9份烹饪食品。</jobString>
+    <label>package prepared food x9</label>
+    <description>Package prepared foods in bulk. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <jobString>Packaging prepared food x9.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
@@ -396,14 +375,7 @@
       </li>
       <li>
         <filter>
-          <customSummary>烹饪食品</customSummary>
-          <categories>
-            <li>FoodMeals</li>
-          </categories>
-          <disallowedThingDefs>
-            <li>MealSurvivalPack</li>
-            <li>MealNutrientPaste</li>
-          </disallowedThingDefs>
+          <customSummary>prepared food</customSummary>
         </filter>
         <count>8</count>
       </li>
@@ -412,25 +384,11 @@
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </fixedIngredientFilter>
     <defaultIngredientFilter>
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </defaultIngredientFilter>
     <products>
       <MealSurvivalPack>9</MealSurvivalPack>
@@ -439,9 +397,9 @@
   <!-- 自定义计量器：食物按营养、非食物按个数（AyameICCT.dll）；营养投入4.5/8/12为有意损耗设计。 -->
   <RecipeDef>
     <defName>AyameICCT_Pack_Meal_13</defName>
-    <label>包装13份烹饪食品</label>
-    <description>以批量规格封装熟食，略微损耗食物，节省了一些包装材料。</description>
-    <jobString>正在包装13份烹饪食品。</jobString>
+    <label>package prepared food x13</label>
+    <description>Package prepared foods in bulk, losing a little food while saving some packaging material. Accepts nutritious prepared foods and drinks from all loaded mods, with nutrient paste and kibble controlled in the mod settings. The Dead Man's Switch C-rations count as 2.0 nutrition each.</description>
+    <jobString>Packaging prepared food x13.</jobString>
     <workSpeedStat>CookSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
@@ -468,14 +426,7 @@
       </li>
       <li>
         <filter>
-          <customSummary>烹饪食品</customSummary>
-          <categories>
-            <li>FoodMeals</li>
-          </categories>
-          <disallowedThingDefs>
-            <li>MealSurvivalPack</li>
-            <li>MealNutrientPaste</li>
-          </disallowedThingDefs>
+          <customSummary>prepared food</customSummary>
         </filter>
         <count>12</count>
       </li>
@@ -484,25 +435,11 @@
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </fixedIngredientFilter>
     <defaultIngredientFilter>
       <thingDefs>
         <li>AyameICCT_PlasticSheet</li>
       </thingDefs>
-      <categories>
-        <li>FoodMeals</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>MealSurvivalPack</li>
-        <li>MealNutrientPaste</li>
-      </disallowedThingDefs>
     </defaultIngredientFilter>
     <products>
       <MealSurvivalPack>13</MealSurvivalPack>
@@ -510,9 +447,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_ComponentIndustrial_Plastic</defName>
-    <label>使用工程塑料制作零部件x1</label>
-    <description>使用工程塑料注塑工艺制作零部件。工作量=原版x0.9</description>
-    <jobString>正在使用工程塑料制作零部件x1。</jobString>
+    <label>make component using engineering plastic</label>
+    <description>Injection-mold a component using engineering plastic.</description>
+    <jobString>Making a component using engineering plastic.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
@@ -556,9 +493,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_ComponentIndustrial_Plastic_Bulk</defName>
-    <label>使用工程塑料制作零部件x4</label>
-    <description>使用注塑工艺批量制作零部件。工作量=原版x4x0.9</description>
-    <jobString>正在使用工程塑料制作零部件x4。</jobString>
+    <label>make components using engineering plastic x4</label>
+    <description>Injection-mold four components using engineering plastic.</description>
+    <jobString>Making components using engineering plastic x4.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
@@ -602,9 +539,9 @@
   </RecipeDef>
   <RecipeDef>
     <defName>AyameICCT_Make_ComponentSpacer_Plastic</defName>
-    <label>使用工程塑料制作高级零部件</label>
-    <description>使用特种工程塑料制作高级零部件，需要更加精密的工艺。工作量=原版x1.2</description>
-    <jobString>正在使用工程塑料制作高级零部件。</jobString>
+    <label>make advanced component using engineering plastic</label>
+    <description>Make an advanced component using specialty engineering plastic and more precise manufacturing techniques.</description>
+    <jobString>Making an advanced component using engineering plastic.</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>

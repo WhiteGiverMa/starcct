@@ -4,7 +4,7 @@ using Verse;
 
 namespace AyameICCT
 {
-    // Food uses nutrition; everything else follows vanilla volume accounting.
+    // All foods use nutrition equally; only the DMS ration has a packaging-specific value.
     public class IngredientValueGetter_NutritionOrCount : IngredientValueGetter
     {
         private readonly IngredientValueGetter_Nutrition nutrition = new IngredientValueGetter_Nutrition();
@@ -12,6 +12,10 @@ namespace AyameICCT
 
         public override float ValuePerUnitOf(ThingDef t)
         {
+            if (PackagingFoodFilter.IsCombatRation(t))
+            {
+                return 2f;
+            }
             return t.IsNutritionGivingIngestible
                 ? nutrition.ValuePerUnitOf(t)
                 : volume.ValuePerUnitOf(t);
@@ -19,7 +23,7 @@ namespace AyameICCT
 
         public override string BillRequirementsDescription(RecipeDef r, IngredientCount ing)
         {
-            return ing.filter.AllowedThingDefs.All(t => t.IsNutritionGivingIngestible)
+            return ing.filter.AllowedThingDefs.All(t => t.IsNutritionGivingIngestible || PackagingFoodFilter.IsCombatRation(t))
                 ? nutrition.BillRequirementsDescription(r, ing)
                 : volume.BillRequirementsDescription(r, ing);
         }

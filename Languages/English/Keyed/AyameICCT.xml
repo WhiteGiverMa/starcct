@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AyameICCT_ModName>Interstellar Cha Chaan Teng</AyameICCT_ModName>
+  <AyameICCT_ModDescription>Produce food-grade polypropylene granules and sheets to Interstellar Cha Chaan Teng standards, and package prepared food into packaged survival meals. Includes plastic conversion and engineering-plastic component recipes.</AyameICCT_ModDescription>
+  <AyameICCT_IncludeNutrientPaste>Packable foods include nutrient paste</AyameICCT_IncludeNutrientPaste>
+  <AyameICCT_IncludeNutrientPasteTip>Allow nutrient paste meals as ingredients in the three food-packaging recipes.</AyameICCT_IncludeNutrientPasteTip>
+  <AyameICCT_IncludeKibble>Packable foods include kibble</AyameICCT_IncludeKibble>
+  <AyameICCT_IncludeKibbleTip>Allow kibble as an ingredient in the three food-packaging recipes.</AyameICCT_IncludeKibbleTip>
+  <AyameICCT_FoodRules>Packable foods are discovered automatically from all loaded item definitions: edible, nutritious prepared products, including meals, pemmican, baby food and nutritious drinks. Raw ingredients, corpses and packaged survival meals are excluded. The Dead Man's Switch C-rations count as 2.0 nutrition each for packaging only.</AyameICCT_FoodRules>
+  <AyameICCT_FilterChanges>Settings update the packaging recipes immediately. Existing bills retain their ingredient choices; enable newly available foods in the bill's ingredient filter, or create a new bill.</AyameICCT_FilterChanges>
+</LanguageData>

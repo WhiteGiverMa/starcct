@@ -2,8 +2,8 @@
 <Defs>
   <ThingDef ParentName="ResourceBase">
     <defName>AyameICCT_PlasticGranule</defName>
-    <label>食品级塑料颗粒</label>
-    <description>5号PP塑料粒材，根据星际茶餐厅的《食品安全企业标准 食品接触用塑料材料及制品》规格制作。不久前茶餐厅发布了这份标准，用于规范茶餐厅殖民人员在边缘世界的食品经营事业。一些当地的工业派系也会以此作为指导性的参考。对于殖民地充满智慧的人民来说，掌握基本有机合成技术即可自行生产。这些粒材用相同材料的密封小塑料袋装好。</description>
+    <label>food-grade plastic granules</label>
+    <description>Type 5 polypropylene granules, manufactured to Interstellar Cha Chaan Teng's Food Safety Enterprise Standard for Food-Contact Plastic Materials and Articles. The restaurant chain recently published this standard to regulate its colonists' food businesses on the rim. Some local industrial factions also use it as a guideline. Resourceful colonists can produce these granules themselves once they master basic organic synthesis. The granules come in small sealed bags made from the same plastic.</description>
     <possessionCount>10</possessionCount>
     <graphicData>
       <texPath>Things/Item/Resource/PlasticGranule</texPath>
@@ -26,8 +26,8 @@
   </ThingDef>
   <ThingDef ParentName="ResourceBase">
     <defName>AyameICCT_PlasticSheet</defName>
-    <label>食品级塑料片</label>
-    <description>聚丙烯塑料片材，它看着就很像保鲜膜，虽然它们不是同一种塑料，但在边缘世界，没那么多可讲究的了。根据星际茶餐厅的 QB 4806.7-5498 规格制作，从茶餐厅买到的每一份饭的塑料餐盒都符合这个标准……希望如此吧。</description>
+    <label>food-grade plastic sheet</label>
+    <description>A sheet of polypropylene plastic. It looks a lot like cling film, even though that is a different kind of plastic. On the rim, there is only so much room for such distinctions. Manufactured to Interstellar Cha Chaan Teng's QB 4806.7-5498 standard, which every plastic meal container purchased from the chain is supposed to meet... hopefully.</description>
     <possessionCount>10</possessionCount>
     <graphicData>
       <texPath>Things/Item/Resource/PlasticSheet</texPath>

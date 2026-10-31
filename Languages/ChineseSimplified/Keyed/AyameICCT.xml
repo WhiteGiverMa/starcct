@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AyameICCT_ModName>星际茶餐厅</AyameICCT_ModName>
+  <AyameICCT_ModDescription>依照星际茶餐厅企业标准生产食品级聚丙烯塑料颗粒与片材，将加工过的食品封装为包装生存食品。支持塑料形态转换与工程塑料零部件制造。</AyameICCT_ModDescription>
+  <AyameICCT_IncludeNutrientPaste>可包装的食品包括营养膏</AyameICCT_IncludeNutrientPaste>
+  <AyameICCT_IncludeNutrientPasteTip>允许三种食品包装配方使用营养膏作为原料。</AyameICCT_IncludeNutrientPasteTip>
+  <AyameICCT_IncludeKibble>可包装的食品包括粗饲料</AyameICCT_IncludeKibble>
+  <AyameICCT_IncludeKibbleTip>允许三种食品包装配方使用粗饲料作为原料。</AyameICCT_IncludeKibbleTip>
+  <AyameICCT_FoodRules>自动从全部已加载物品定义中识别可食用、有营养值的加工食品，包括餐食、干肉饼、婴儿食物与营养饮品。排除生食原料、尸体和包装生存食品。失能机关的 C 口粮仅在包装时按每份 2.0 营养值计量。</AyameICCT_FoodRules>
+  <AyameICCT_FilterChanges>设置立即更新包装配方。已有订单保留各自的原料选择；请在订单的原料筛选中勾选新开放的食品，或新建订单。</AyameICCT_FilterChanges>
+</LanguageData>
