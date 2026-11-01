@@ -8,6 +8,11 @@
   <AyameICCT_IncludeKibbleTip>Allow kibble as an ingredient in the three food-packaging recipes.</AyameICCT_IncludeKibbleTip>
   <AyameICCT_AllowRepackaging>Allow repackaging packaged survival meals</AyameICCT_AllowRepackaging>
   <AyameICCT_AllowRepackagingTip>...Are you really sure you want to enable this? lol</AyameICCT_AllowRepackagingTip>
+  <AyameICCT_PreparedIngredientsAny>Experimental: packaged meals with prepared ingredients count as any food kind</AyameICCT_PreparedIngredientsAny>
+  <AyameICCT_PreparedIngredientsAnyTip>Off by default. Packaged survival meals only: generic prepared meals and C-rations used as ingredients make the product acceptable for everyone rather than incorrectly vegetarian. Explicit vegetarian/meat meals retain their declared kind. Other foods, including paste made from paste or simple meals made from paste, are unchanged. Independent of mood inheritance.</AyameICCT_PreparedIngredientsAnyTip>
+  <AyameICCT_InheritIngredientMood>Experimental: packaged meals inherit ingredient mood</AyameICCT_InheritIngredientMood>
+  <AyameICCT_InheritIngredientMoodTip>Off by default. Eating a packaged survival meal grants native food mood memories for one serving of each recorded direct prepared ingredient, respecting Ascetic, ideology and vanilla thought replacement. No nested ingredients or ingestion effects; other foods and food-choice previews are unchanged. Paste made from paste has no extra penalty; paste made from lavish meals gains no lavish-meal bonus.</AyameICCT_InheritIngredientMoodTip>
+  <AyameICCT_ResetDefaults>Restore defaults</AyameICCT_ResetDefaults>
   <AyameICCT_FoodRules>Packable foods are discovered automatically from all loaded item definitions: edible, nutritious prepared products, including meals, pemmican, baby food and nutritious drinks. Raw ingredients and corpses are excluded; packaged survival meals cannot be repackaged by default. The Dead Man's Switch C-rations count as 2.0 nutrition each for packaging only.</AyameICCT_FoodRules>
   <AyameICCT_FilterChanges>Settings update the packaging recipes immediately. Existing bills retain their ingredient choices; enable newly available foods in the bill's ingredient filter, or create a new bill.</AyameICCT_FilterChanges>
 </LanguageData>

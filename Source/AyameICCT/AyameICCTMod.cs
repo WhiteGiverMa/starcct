@@ -8,12 +8,25 @@ namespace AyameICCT
         public bool IncludeNutrientPaste = true;
         public bool IncludeKibble;
         public bool AllowRepackaging;
+        public bool PreparedIngredientsAny;
+        public bool InheritIngredientMood;
+
+        public void ResetDefaults()
+        {
+            IncludeNutrientPaste = true;
+            IncludeKibble = false;
+            AllowRepackaging = false;
+            PreparedIngredientsAny = false;
+            InheritIngredientMood = false;
+        }
 
         public override void ExposeData()
         {
             Scribe_Values.Look(ref IncludeNutrientPaste, "includeNutrientPaste", true);
             Scribe_Values.Look(ref IncludeKibble, "includeKibble", false);
             Scribe_Values.Look(ref AllowRepackaging, "allowRepackaging", false);
+            Scribe_Values.Look(ref PreparedIngredientsAny, "preparedIngredientsAny", false);
+            Scribe_Values.Look(ref InheritIngredientMood, "inheritIngredientMood", false);
         }
     }
 
@@ -46,6 +59,16 @@ namespace AyameICCT
                 "AyameICCT_IncludeKibbleTip".Translate());
             listing.CheckboxLabeled("AyameICCT_AllowRepackaging".Translate(), ref Settings.AllowRepackaging,
                 "AyameICCT_AllowRepackagingTip".Translate());
+            listing.Gap();
+            listing.CheckboxLabeled("AyameICCT_PreparedIngredientsAny".Translate(), ref Settings.PreparedIngredientsAny,
+                "AyameICCT_PreparedIngredientsAnyTip".Translate());
+            listing.CheckboxLabeled("AyameICCT_InheritIngredientMood".Translate(), ref Settings.InheritIngredientMood,
+                "AyameICCT_InheritIngredientMoodTip".Translate());
+            listing.Gap();
+            if (listing.ButtonText("AyameICCT_ResetDefaults".Translate()))
+            {
+                Settings.ResetDefaults();
+            }
             listing.Gap();
             listing.Label("AyameICCT_FoodRules".Translate());
             listing.Gap();

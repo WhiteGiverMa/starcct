@@ -8,6 +8,11 @@
   <AyameICCT_IncludeKibbleTip>允许三种食品包装配方使用粗饲料作为原料。</AyameICCT_IncludeKibbleTip>
   <AyameICCT_AllowRepackaging>包装生存食品可以再包装</AyameICCT_AllowRepackaging>
   <AyameICCT_AllowRepackagingTip>……真的要开启吗w</AyameICCT_AllowRepackagingTip>
+  <AyameICCT_PreparedIngredientsAny>实验性：包装食品熟食原料视为无忌口</AyameICCT_PreparedIngredientsAny>
+  <AyameICCT_PreparedIngredientsAnyTip>默认关闭。仅对包装生存食品生效：通用熟食与 C 口粮作为原料时，成品不再误判为素食，而视为无忌口。明确标为素食或含肉的餐食仍保留原分类。不修改其他食品，包括营养膏味营养膏或营养膏味简单食物。与心情开关独立。</AyameICCT_PreparedIngredientsAnyTip>
+  <AyameICCT_InheritIngredientMood>实验性：包装食品继承熟食原料心情</AyameICCT_InheritIngredientMood>
+  <AyameICCT_InheritIngredientMoodTip>默认关闭。吃包装生存食品时，按记录的每种直接加工食品原料各算一份原生食物心情，遵守苦行者、文化与原版心情互斥规则。不递归、不执行原料摄入效果，不影响其他食品或选食预览。营养膏味营养膏不会重复扣心情，奢侈餐味营养膏也不加奢侈餐心情。</AyameICCT_InheritIngredientMoodTip>
+  <AyameICCT_ResetDefaults>恢复默认</AyameICCT_ResetDefaults>
   <AyameICCT_FoodRules>自动从全部已加载物品定义中识别可食用、有营养值的加工食品，包括餐食、干肉饼、婴儿食物与营养饮品。排除生食原料和尸体，包装生存食品默认不可再包装。失能机关的 C 口粮仅在包装时按每份 2.0 营养值计量。</AyameICCT_FoodRules>
   <AyameICCT_FilterChanges>设置立即更新包装配方。已有订单保留各自的原料选择；请在订单的原料筛选中勾选新开放的食品，或新建订单。</AyameICCT_FilterChanges>
 </LanguageData>

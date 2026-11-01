@@ -1,4 +1,5 @@
 using HarmonyLib;
+using RimWorld;
 using Verse;
 
 namespace AyameICCT
@@ -22,12 +23,29 @@ namespace AyameICCT
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(ContentName)));
             harmony.Patch(AccessTools.Method(typeof(PlayDataLoader), "ResetStaticDataPost"),
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(AfterDefsResolved)));
+            harmony.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.GetFoodKind), new[] { typeof(Thing) }),
+                postfix: new HarmonyMethod(typeof(ModPatches), nameof(PreparedFoodKind)));
             installed = true;
         }
 
         private static void AfterDefsResolved()
         {
             PackagingFoodFilter.Apply(AyameICCTMod.Settings);
+        }
+
+        private static void PreparedFoodKind(Thing food, ref FoodKind __result)
+        {
+            if (AyameICCTMod.Settings?.PreparedIngredientsAny != true
+                || food?.def != ThingDefOf.MealSurvivalPack || __result != FoodKind.NonMeat)
+            {
+                return;
+            }
+            CompIngredients ingredients = food.TryGetComp<CompIngredients>();
+            if (ingredients != null && ingredients.ingredients.Exists(def => PackagingFoodFilter.IsPreparedIngredient(def)
+                && (FoodUtility.GetFoodKind(def) == FoodKind.Any || PackagingFoodFilter.IsCombatRation(def))))
+            {
+                __result = FoodKind.Any;
+            }
         }
 
         private static void MetadataName(ModMetaData __instance, ref string __result)
