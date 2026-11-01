@@ -329,16 +329,9 @@
         <count>4.5</count>
       </li>
     </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <defaultIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </defaultIngredientFilter>
+    <!-- 塑料作为单一定义的固定材料取用，可选筛选仅由 DLL 填入食品。 -->
+    <fixedIngredientFilter />
+    <defaultIngredientFilter />
     <products>
       <MealSurvivalPack>5</MealSurvivalPack>
     </products>
@@ -380,16 +373,8 @@
         <count>8</count>
       </li>
     </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <defaultIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </defaultIngredientFilter>
+    <fixedIngredientFilter />
+    <defaultIngredientFilter />
     <products>
       <MealSurvivalPack>9</MealSurvivalPack>
     </products>
@@ -431,16 +416,8 @@
         <count>12</count>
       </li>
     </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <defaultIngredientFilter>
-      <thingDefs>
-        <li>AyameICCT_PlasticSheet</li>
-      </thingDefs>
-    </defaultIngredientFilter>
+    <fixedIngredientFilter />
+    <defaultIngredientFilter />
     <products>
       <MealSurvivalPack>13</MealSurvivalPack>
     </products>

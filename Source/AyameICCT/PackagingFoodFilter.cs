@@ -55,6 +55,10 @@ namespace AyameICCT
 
         public static void Apply(PackagingSettings settings)
         {
+            if (!ThingDefOf.MealSurvivalPack.comps.Any(comp => comp.compClass == typeof(CompPackagingIngredients)))
+            {
+                ThingDefOf.MealSurvivalPack.comps.Insert(0, new CompProperties(typeof(CompPackagingIngredients)));
+            }
             ThingDef[] foods = DefDatabase<ThingDef>.AllDefs.Where(def => CanPack(def, settings)).ToArray();
             foreach (RecipeDef recipe in DefDatabase<RecipeDef>.AllDefs.Where(def =>
                 def.defName == "AyameICCT_Pack_Meal_5"
