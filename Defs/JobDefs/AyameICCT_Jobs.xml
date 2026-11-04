@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>AyameICCT_ReprogramMech</defName>
+    <driverClass>AyameICCT.JobDriver_ReprogramMech</driverClass>
+    <reportString>reprogramming TargetA.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+</Defs>
