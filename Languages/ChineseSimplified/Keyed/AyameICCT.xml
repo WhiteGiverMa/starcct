@@ -25,4 +25,22 @@
   <AyameICCT_KeyTargetUnavailable>目标尸体已被搬起、移走、禁用或预约，无法重组。</AyameICCT_KeyTargetUnavailable>
   <AyameICCT_KeyInterrupted>重组条件已变化，操作中止。密钥未消耗。</AyameICCT_KeyInterrupted>
   <AyameICCT_KeyCompleted>已消耗 {0} 个重组密钥，将{1}的归属改为己方。尸体尚未复活。</AyameICCT_KeyCompleted>
+  <AyameICCT_ContactRestaurant>联系星际茶餐厅</AyameICCT_ContactRestaurant>
+  <AyameICCT_ShopTitle>星际茶餐厅</AyameICCT_ShopTitle>
+  <AyameICCT_ShopPlastic>批发塑料</AyameICCT_ShopPlastic>
+  <AyameICCT_ShopKeys>购买「重构密钥」</AyameICCT_ShopKeys>
+  <AyameICCT_ShopQuantity>选择购买量</AyameICCT_ShopQuantity>
+  <AyameICCT_ShopUnitPrice>市场价值：{0} 白银／个</AyameICCT_ShopUnitPrice>
+  <AyameICCT_ShopTotal>总价：{0} 白银</AyameICCT_ShopTotal>
+  <AyameICCT_ShopSilver>居住区可用白银：{0}</AyameICCT_ShopSilver>
+  <AyameICCT_ShopDelivery>货物将以空投舱送至轨道贸易投送点。仅使用当前地图居住区内摆放的白银。</AyameICCT_ShopDelivery>
+  <AyameICCT_ShopBuy>购买</AyameICCT_ShopBuy>
+  <AyameICCT_ShopClose>关闭</AyameICCT_ShopClose>
+  <AyameICCT_ShopInvalidQuantity>请选择有效的购买数量。</AyameICCT_ShopInvalidQuantity>
+  <AyameICCT_ShopNotEnoughSilver>居住区内的白银不足，本次购买需要 {0} 白银。</AyameICCT_ShopNotEnoughSilver>
+  <AyameICCT_ShopUnavailable>通讯台或通讯者当前无法使用，请重新联系星际茶餐厅。</AyameICCT_ShopUnavailable>
+  <AyameICCT_ShopMissingKey>重构密钥不可用，需要启用 Biotech。</AyameICCT_ShopMissingKey>
+  <AyameICCT_ShopInvalidPrice>这些物品的当前市场价值无法用于结算。</AyameICCT_ShopInvalidPrice>
+  <AyameICCT_ShopNoDropSpot>没有安全的空投位置，未扣除白银。</AyameICCT_ShopNoDropSpot>
+  <AyameICCT_ShopPurchased>已支付 {0} 白银，货物已装舱空投。</AyameICCT_ShopPurchased>
 </LanguageData>

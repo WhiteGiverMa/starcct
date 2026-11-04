@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -25,7 +26,16 @@ namespace AyameICCT
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(AfterDefsResolved)));
             harmony.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.GetFoodKind), new[] { typeof(Thing) }),
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(PreparedFoodKind)));
+            harmony.Patch(AccessTools.Method(typeof(Building_CommsConsole), nameof(Building_CommsConsole.GetFloatMenuOptions),
+                    new[] { typeof(Pawn) }),
+                postfix: new HarmonyMethod(typeof(ModPatches), nameof(CommsConsoleOptions)));
             installed = true;
+        }
+
+        private static IEnumerable<FloatMenuOption> CommsConsoleOptions(IEnumerable<FloatMenuOption> __result,
+            Building_CommsConsole __instance, Pawn myPawn)
+        {
+            return CommsConsoleShop.AppendContactOption(__result, __instance, myPawn);
         }
 
         private static void AfterDefsResolved()

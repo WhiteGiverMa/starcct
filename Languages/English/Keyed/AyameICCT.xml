@@ -25,4 +25,22 @@
   <AyameICCT_KeyTargetUnavailable>The corpse has been picked up, moved away, forbidden or reserved. Reprogramming is unavailable.</AyameICCT_KeyTargetUnavailable>
   <AyameICCT_KeyInterrupted>Reprogramming conditions changed. The operation was stopped without consuming any keys.</AyameICCT_KeyInterrupted>
   <AyameICCT_KeyCompleted>Consumed {0} reprogramming keys and changed {1} to your faction. The mechanoid is still dead.</AyameICCT_KeyCompleted>
+  <AyameICCT_ContactRestaurant>Contact Interstellar Cha Chaan Teng</AyameICCT_ContactRestaurant>
+  <AyameICCT_ShopTitle>Interstellar Cha Chaan Teng</AyameICCT_ShopTitle>
+  <AyameICCT_ShopPlastic>Wholesale plastics</AyameICCT_ShopPlastic>
+  <AyameICCT_ShopKeys>Buy reprogramming keys</AyameICCT_ShopKeys>
+  <AyameICCT_ShopQuantity>Select purchase quantity</AyameICCT_ShopQuantity>
+  <AyameICCT_ShopUnitPrice>Market value: {0} silver each</AyameICCT_ShopUnitPrice>
+  <AyameICCT_ShopTotal>Total: {0} silver</AyameICCT_ShopTotal>
+  <AyameICCT_ShopSilver>Silver available in the Home area: {0}</AyameICCT_ShopSilver>
+  <AyameICCT_ShopDelivery>Your order will arrive by drop pod at the orbital trade drop spot. Only silver placed in this map's Home area is used.</AyameICCT_ShopDelivery>
+  <AyameICCT_ShopBuy>Buy</AyameICCT_ShopBuy>
+  <AyameICCT_ShopClose>Close</AyameICCT_ShopClose>
+  <AyameICCT_ShopInvalidQuantity>Select a valid purchase quantity.</AyameICCT_ShopInvalidQuantity>
+  <AyameICCT_ShopNotEnoughSilver>Not enough silver in the Home area. This order requires {0} silver.</AyameICCT_ShopNotEnoughSilver>
+  <AyameICCT_ShopUnavailable>The console or caller is no longer available. Contact Interstellar Cha Chaan Teng again.</AyameICCT_ShopUnavailable>
+  <AyameICCT_ShopMissingKey>Reprogramming keys are unavailable. Biotech must be enabled.</AyameICCT_ShopMissingKey>
+  <AyameICCT_ShopInvalidPrice>The current market values cannot be used to price this order.</AyameICCT_ShopInvalidPrice>
+  <AyameICCT_ShopNoDropSpot>No safe drop spot is available. No silver was consumed.</AyameICCT_ShopNoDropSpot>
+  <AyameICCT_ShopPurchased>Paid {0} silver. Your order has been dispatched by drop pod.</AyameICCT_ShopPurchased>
 </LanguageData>

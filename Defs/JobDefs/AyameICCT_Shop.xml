@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>AyameICCT_ContactRestaurant</defName>
+    <driverClass>AyameICCT.JobDriver_ContactRestaurant</driverClass>
+    <reportString>contacting Interstellar Cha Chaan Teng.</reportString>
+  </JobDef>
+</Defs>
