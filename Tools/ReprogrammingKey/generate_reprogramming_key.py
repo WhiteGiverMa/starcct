@@ -1,4 +1,4 @@
-"""Draw the Archotech-palette refactor keycard (Tarkov Labs style), 64x64 RGBA.
+"""Draw the Archotech-palette refactor keycard (Tarkov Labs style), 256x256 RGBA.
 
 Requires Python 3.13+ and Pillow 11+. Deterministic: no randomness.
 Tarkov high-tier keycard silhouette (tilted card, lanyard slot, header band,
@@ -10,7 +10,12 @@ From the repo root:
     py -3.15 Tools/ReprogrammingKey/generate_reprogramming_key.py
 
 The default output is the runtime texture; pass --preview with a Temp path to
-write the 1x/4x/6x dark-and-light contact sheet.
+write the dark-and-light contact sheet (game-scale 64, native 256, edge zoom).
+
+Geometry lives in a 64-unit design space, supersampled 32x (2048 px) and
+Lanczos-downsampled to 256 px. The silhouette keeps smooth anti-aliased alpha;
+every pixel with 0 < alpha < 255 sits in the pure black outline, so its RGB is
+(0, 0, 0) and RimWorld's cutout/UI blending cannot produce a light halo.
 """
 
 import argparse
@@ -23,21 +28,24 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 TEXTURE = ROOT / "Textures/Things/Item/Special/ReprogrammingKey.png"
-SIZE = 64
-SS = 8
+SIZE = 256  # output pixels
+DESIGN = 64  # design-space units across the canvas
+SS = 32  # supersampled pixels per design unit
+N = DESIGN * SS  # 2048 px working canvas
 INK = (0, 0, 0, 255)
 ANGLE = -31.0
 CENTER = (32.0, 32.5)
 
-# Card half extents (local units = output pixels before rotation).
+# Card half extents (design units, before rotation).
 HU, HV, RADIUS = 18.5, 11.0, 3.0
-OUTLINE = 1.9
+OUTLINE = 1.1  # ~4.4 px at 256
 
 SAGE_HI = (150, 172, 148)
 SAGE_LO = (100, 126, 106)
 CELADON = (196, 216, 190)
 JADE_DARK = (48, 66, 54)
 JADE_DEEP = (30, 44, 36)
+RIM_SHADOW = (74, 96, 80)
 GOLD = (235, 195, 65)
 GOLD_BRIGHT = (255, 226, 108)
 GOLD_SHADOW = (170, 124, 32)
@@ -53,7 +61,7 @@ def pt(u, v):
     )
 
 
-def rrect(u0, v0, u1, v1, r, steps=10):
+def rrect(u0, v0, u1, v1, r, steps=24):
     pts = []
     corners = (
         (u1 - r, v0 + r, -90),
@@ -69,25 +77,24 @@ def rrect(u0, v0, u1, v1, r, steps=10):
 
 
 def mask_of(points):
-    m = Image.new("L", (SIZE * SS, SIZE * SS), 0)
+    m = Image.new("L", (N, N), 0)
     ImageDraw.Draw(m).polygon([pt(*p) for p in points], fill=255)
     return m
 
 
 def solid(rgb):
-    return Image.new("RGBA", (SIZE * SS, SIZE * SS), rgb + (255,))
+    return Image.new("RGBA", (N, N), rgb + (255,))
 
 
 def gradient(hi, lo):
     """Top-left (hi) to bottom-right (lo) along x + y in screen space."""
-    n = SIZE * SS
-    ramp = Image.linear_gradient("L").resize((n, n))  # vertical 0..255
+    ramp = Image.linear_gradient("L").resize((N, N))  # vertical 0..255
     ramp = ImageChops.add(
         ramp.point(lambda p: p // 2),
         ramp.transpose(Image.Transpose.TRANSPOSE).point(lambda p: p // 2),
     )
-    a = Image.new("RGBA", (n, n), hi + (255,))
-    b = Image.new("RGBA", (n, n), lo + (255,))
+    a = Image.new("RGBA", (N, N), hi + (255,))
+    b = Image.new("RGBA", (N, N), lo + (255,))
     return Image.composite(b, a, ramp)
 
 
@@ -96,19 +103,18 @@ def shifted(mask, dx, dy):
 
 
 def draw_card():
-    n = SIZE * SS
-    img = Image.new("RGBA", (n, n))
+    """Return (opaque art on black, silhouette mask), both N x N."""
+    img = Image.new("RGBA", (N, N), INK)
     body = mask_of(rrect(-HU, -HV, HU, HV, RADIUS))
     outer = mask_of(
         rrect(
             -HU - OUTLINE, -HV - OUTLINE, HU + OUTLINE, HV + OUTLINE, RADIUS + OUTLINE
         )
     )
-    img.paste(INK, mask=outer)
     img.paste(gradient(SAGE_HI, SAGE_LO), mask=body)
 
     # Detail layer, clipped to body afterwards.
-    det = Image.new("RGBA", (n, n))
+    det = Image.new("RGBA", (N, N))
     d = ImageDraw.Draw(det)
 
     def poly(points, rgb):
@@ -126,10 +132,10 @@ def draw_card():
         poly(
             [
                 (
-                    u + r * math.cos(t * math.tau / 16),
-                    v + r * math.sin(t * math.tau / 16),
+                    u + r * math.cos(t * math.tau / 32),
+                    v + r * math.sin(t * math.tau / 32),
                 )
-                for t in range(16)
+                for t in range(32)
             ],
             rgb,
         )
@@ -199,34 +205,45 @@ def draw_card():
 
     img.paste(det, mask=ImageChops.multiply(det.getchannel("A"), body))
 
-    # Bevels: top-left rim highlight, bottom-right rim shadow (inside body).
-    d_px = 1.0
-    hi_rim = ImageChops.subtract(body, shifted(body, d_px, d_px))
-    lo_rim = ImageChops.subtract(body, shifted(body, -d_px, -d_px))
+    # Bevels: top-left rim highlight, and a narrow mid-jade bottom-right rim
+    # that stays distinct from the black outline instead of doubling it.
+    hi_rim = ImageChops.subtract(body, shifted(body, 0.7, 0.7))
+    lo_rim = ImageChops.subtract(body, shifted(body, -0.45, -0.45))
     img.paste(solid(CELADON), mask=hi_rim.point(lambda p: p * 3 // 4))
-    img.paste(solid(JADE_DARK), mask=lo_rim)
-    return img
+    img.paste(solid(RIM_SHADOW), mask=lo_rim)
+    return img, outer
 
 
-def cutout(image):
-    image = image.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
-    alpha = image.getchannel("A").point(lambda value: 255 if value >= 128 else 0)
-    image.putalpha(alpha)
-    clean = Image.new("RGBA", image.size)
-    clean.paste(image, mask=alpha)
+def cutout(art, outer):
+    """Downsample RGB and alpha separately; outline-edge pixels stay black.
+
+    The art is opaque (black outside the body), so RGB resampling never mixes
+    in transparent colour. Faint Lanczos ringing is clamped at both alpha ends,
+    and RGB is zeroed wherever alpha < 255 (that band lies inside the outline).
+    """
+    rgb = art.convert("RGB").resize((SIZE, SIZE), Image.Resampling.LANCZOS)
+    alpha = outer.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
+    alpha = alpha.point(lambda a: 0 if a < 8 else 255 if a > 248 else a)
+    opaque = alpha.point(lambda a: 255 if a == 255 else 0)
+    clean = Image.new("RGB", rgb.size)
+    clean.paste(rgb, mask=opaque)
+    clean.putalpha(alpha)
     return clean
 
 
 def inspect(image):
-    if image.size != (64, 64) or image.mode != "RGBA":
-        raise ValueError("Expected 64x64 RGBA image")
+    if image.size != (SIZE, SIZE) or image.mode != "RGBA":
+        raise ValueError(f"Expected {SIZE}x{SIZE} RGBA image")
     pixels = (
         list(image.get_flattened_data())
         if hasattr(image, "get_flattened_data")
         else list(image.getdata())
     )
-    alpha = sorted({p[3] for p in pixels})
+    alpha = {p[3] for p in pixels}
     dirty = sum(p[:3] != (0, 0, 0) for p in pixels if p[3] == 0)
+    halo = sum(p[:3] != (0, 0, 0) for p in pixels if 0 < p[3] < 255)
+    semi = sum(0 < p[3] < 255 for p in pixels)
+    covered = sum(p[3] for p in pixels) / 255
     pending = {i for i, p in enumerate(pixels) if p[3]}
     components = []
     while pending:
@@ -235,60 +252,98 @@ def inspect(image):
         while queue:
             i = queue.pop()
             count += 1
-            x, y = i % 64, i // 64
+            x, y = i % SIZE, i // SIZE
             for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
-                j = ny * 64 + nx
-                if 0 <= nx < 64 and 0 <= ny < 64 and j in pending:
+                j = ny * SIZE + nx
+                if 0 <= nx < SIZE and 0 <= ny < SIZE and j in pending:
                     pending.remove(j)
                     queue.append(j)
         components.append(count)
     bbox = image.getbbox()
-    if alpha != [0, 255] or dirty or len(components) != 1:
+    if dirty or halo or len(components) != 1:
         raise ValueError(
-            f"Invalid cutout: alpha={alpha}, dirty RGB={dirty}, components={components}"
+            f"Invalid cutout: transparent RGB={dirty}, "
+            f"semitransparent non-black={halo}, components={components}"
         )
-    if bbox[0] == 0 or bbox[1] == 0 or bbox[2] == 64 or bbox[3] == 64:
+    if 0 not in alpha or 255 not in alpha:
+        raise ValueError("Expected fully transparent and fully opaque pixels")
+    if bbox[0] == 0 or bbox[1] == 0 or bbox[2] == SIZE or bbox[3] == SIZE:
         raise ValueError(f"Silhouette touches canvas edge: {bbox}")
     return {
         "size": list(image.size),
         "mode": image.mode,
-        "alpha": alpha,
+        "alpha_min": min(alpha),
+        "alpha_max": max(alpha),
+        "alpha_levels": len(alpha),
+        "semitransparent_pixels": semi,
         "transparent_rgb_nonzero": dirty,
+        "semitransparent_nonblack": halo,
         "bbox": list(bbox),
-        "coverage_percent": round(sum(components) / 4096 * 100, 3),
+        "coverage_percent": round(covered / (SIZE * SIZE) * 100, 3),
         "components": components,
     }
 
 
-def preview(path, image):
+def checker(draw, x, y, w, cell, light):
+    for yy in range(0, w, cell):
+        for xx in range(0, w, cell):
+            check = (xx // cell + yy // cell) % 2
+            v = (218 + check * 20) if light else (46 + check * 9)
+            draw.rectangle(
+                (
+                    x + xx,
+                    y + yy,
+                    min(x + xx + cell, x + w) - 1,
+                    min(y + yy + cell, y + w) - 1,
+                ),
+                fill=(v, v, v),
+            )
+
+
+def preview(path, image, before=None):
+    """Dark/light rows: game-scale 64, native 256 and a 6x outline edge crop.
+
+    With an older texture as `before`, its 1x view and the same edge crop at
+    matching magnification are shown first for comparison.
+    """
     font = ImageFont.load_default(size=14)
-    zooms = (1, 4, 6)
+    crop = (120, 140, 184, 204)  # middle of the card's lower long edge, 64 px
+    tiles = []
+    if before is not None:
+        before = before.convert("RGBA")
+        k = before.width / SIZE
+        bc = tuple(round(c * k) for c in crop)
+        tiles += [
+            ("before 64 (1x)", before, 1),
+            ("before edge", before.crop(bc), 384 // (bc[2] - bc[0])),
+        ]
+    tiles += [
+        ("after 64 (game 1x)", image.resize((64, 64), Image.Resampling.LANCZOS), 1),
+        ("after 256 native", image, 1),
+        ("after edge 6x", image.crop(crop), 6),
+    ]
     gap, header = 14, 22
-    width = gap + sum(64 * z + gap for z in zooms)
-    row = header + 64 * 6 + gap
+    tallest = max(im.height * z for _, im, z in tiles)
+    width = gap + sum(max(im.width * z, 150) + gap for _, im, z in tiles)
+    row = header + tallest + gap
     out = Image.new("RGB", (width, gap + 2 * row), (39, 43, 45))
     draw = ImageDraw.Draw(out)
     for bg in range(2):
         top = gap + bg * row
         x = gap
-        for z in zooms:
-            w = 64 * z
+        for label, im, z in tiles:
+            w = im.width * z
             draw.text(
-                (x, top), f"{z}x {'light' if bg else 'dark'}", fill="white", font=font
+                (x, top),
+                f"{label} {'light' if bg else 'dark'}",
+                fill="white",
+                font=font,
             )
             y = top + header
-            cell = 8 * z
-            for yy in range(0, w, cell):
-                for xx in range(0, w, cell):
-                    check = (xx // cell + yy // cell) % 2
-                    v = (218 + check * 20) if bg else (46 + check * 9)
-                    draw.rectangle(
-                        (x + xx, y + yy, x + xx + cell - 1, y + yy + cell - 1),
-                        fill=(v, v, v),
-                    )
-            im = image.resize((w, w), Image.Resampling.NEAREST)
-            out.paste(im, (x, y), im)
-            x += w + gap
+            checker(draw, x, y, w, max(8, w // 8), bg)
+            big = im.resize((w, w), Image.Resampling.NEAREST) if z > 1 else im
+            out.paste(big, (x, y), big)
+            x += max(w, 150) + gap
     path.parent.mkdir(parents=True, exist_ok=True)
     out.save(path)
 
@@ -306,19 +361,27 @@ def main():
         type=Path,
         help="Optional contact-sheet PNG path, outside runtime textures",
     )
+    parser.add_argument(
+        "--before",
+        type=Path,
+        help="Optional older texture shown in the preview for comparison",
+    )
     args = parser.parse_args()
     if args.preview:
         if args.preview.suffix.lower() != ".png":
             parser.error("--preview must be a .png path")
         if args.preview.resolve().is_relative_to(ROOT / "Textures"):
             parser.error("--preview must be outside runtime textures")
-    image = cutout(draw_card())
+    if args.before and not args.preview:
+        parser.error("--before requires --preview")
+    image = cutout(*draw_card())
     report = inspect(image)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     image.save(args.output, optimize=True)
     report["sha256"] = hashlib.sha256(args.output.read_bytes()).hexdigest()
     if args.preview:
-        preview(args.preview, image)
+        before = Image.open(args.before) if args.before else None
+        preview(args.preview, image, before)
     print(json.dumps(report, indent=2))
 
 
