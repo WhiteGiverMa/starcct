@@ -237,18 +237,21 @@ dotnet build Source/AyameICCT/AyameICCT.csproj -c Release
 
 最小浅测：正常启动后，右键己方已通电通讯台并选择「联系星际茶餐厅」，确认小人走到交互位置后才开窗；拖动两组塑料滑条检查 500 步进与总价，购买后确认居住区白银减少、空投舱送达且货物数量正确。也可顺带确认未启用 Biotech 时密钥入口不可用、塑料仍可购买。
 
-### 重构密钥贴图与改名（2026-11-05）
+### 重构密钥贴图、改名与全量 256×256 抗锯齿升级（2026-11-05）
 
 物品从借用的原版 `MechSerumResurrector` 贴图换成自制贴图，玩家可见名由「重组密钥／reprogramming key」改为「重构密钥／refactor key」。`defName`、组件类、任务与 `thingCategory` 全部保持原样，旧存档和现有引用继续解析；只有显示名、商店按钮、完成提示、悬浮菜单动词与 `About` 描述跟着改。机械动作本身仍叫「重组／reprogramming」。
 
-贴图为 64×64 RGBA 单图，`Graphic_Single`，路径 `Textures/Things/Item/Special/ReprogrammingKey.png`（`texPath` 为 `Things/Item/Special/ReprogrammingKey`）。造型参考塔科夫实验室高级房卡：约 −31° 斜放卡身、左端挂绳槽、金色智能芯片与走线、右端带双折角的识别色带、底部磁条；配色是超凡科技的灰翠绿卡身加暖金黄点缀，外圈约 1.9px 纯黑轮廓，左上主光。生成器与验证命令见 [Tools/ReprogrammingKey](Tools/ReprogrammingKey/README.md)。
+同时将重构密钥与全部 8 张塑料贴图（`PlasticGranule_a~d`、`PlasticSheet_a~d`）从 64×64 硬切 alpha 升级为 **256×256 RGBA 黑底平滑抗锯齿贴图**（内部 2048×2048 超采样绘制，外圈圆润黑边，半透明边缘像素 RGB 严格为 `(0,0,0)` 以杜绝 Cutout/UI 泛白边）：
+
+* **重构密钥**：`Graphic_Single`，路径 `Textures/Things/Item/Special/ReprogrammingKey.png`（`texPath` 为 `Things/Item/Special/ReprogrammingKey`）。参考塔科夫实验室高级房卡：约 −31° 斜放卡身、左端挂绳槽、金色智能芯片与走线、右端带双折角的识别色带、底部磁条；配色是超凡科技的灰翠绿卡身加暖金黄点缀，外圈约 1.1 单位（256 下约 4.4px）纯黑轮廓。生成器与验证命令见 [Tools/ReprogrammingKey](Tools/ReprogrammingKey/README.md)。
+* **塑料粒与塑料片（共 8 张）**：`Tools/Plastic/generate_granule_bags.py` 扩展为自包含的 8 图生成器（无外部图片或 `history/` 依赖），保留原有三档密封袋、敞口周转箱、两档散装片材与两档薄膜卷设计，消除 64×64 阶梯锯齿与颗粒马赛克，并将 `PlasticSheet_c` 调整至 `_b` 与 `_d` 之间（覆盖率 `14.1% < 22.3% < 34.9% < 57.5%`；粒材 `8.5% < 20.4% < 33.3% < 57.4%`）。详见 [Tools/Plastic](Tools/Plastic/README.md)。
 
 验证与交付：
 
 * 同一游戏 DLL 下 Release 构建零警告、零错误；脚本离线 QA **699 项全部通过**（食品与实验 385 项、密钥驱动与边界、运行时堆叠 1/50/1000、通讯台商店 75 项），既有断言的顺序与文本未改。
-* 贴图校验：64×64、alpha 仅 `0/255`、透明像素 RGB 全零、单一连通主体 1028 px、外接矩形 `(10, 13, 54, 52)` 不贴边、覆盖率 25.098%；生成器在 Python 3.15.2 / Pillow 13.0.0 下重复运行得到同一 SHA256 `717C1A0971CAC9AF7E6A1D7AB1FDC9966C6EEA220D4AD3CBC544BDA46787C5DA`，与仓库内运行贴图逐字节一致。
+* 贴图校验（全 9 张 PNG）：均为 256×256 RGBA、透明像素 RGB 全零、半透明像素 RGB 全黑（`semitransparent_nonblack == 0`）、单一连通主体、外接矩形不贴边；生成器在 Python 3.15.2 / Pillow 13.0.0 下重复运行均逐字节确定性一致（`ReprogrammingKey.png` SHA256 `9994FE6757D3012EC57FC24D0D81E249FEAAB64D7627F15D14F6003DAE5FD5FB`）。
 * 内容校验 **88 项通过**：运行 XML 全部良构、基础与中英 `DefInjected` 名称一致、商店与完成提示同步、中英 Keyed 键集与占位符一致、全部运行文本中不再残留旧名或原版贴图引用、物品数值（5 个／0.05 kg／1500 银）与两个组件、`useJob` 未变、定义名唯一、README 分割线以上仅替换了物品名。
-* 部署为文件级非破坏性更新：28 个运行资源逐项校验一致，覆盖 7 个、新增 1 个、无删除，原 35 个安装文件完整备份；未改 `ModsConfig`、玩家设置或存档。构建产物 SHA256 `5C4FC77CB0555B7978119E75883E05750E7A8BACAA3CD7239885427C4DF4B184`，仓库 `Assemblies/` 与游戏 `Mods/starcct` 一致。状态为**已部署、离线验证通过，待游戏内浅测**。
+* 部署为文件级非破坏性更新：28 个运行资源逐项校验一致，原安装文件完整备份；未改 `ModsConfig`、玩家设置或存档。构建产物 SHA256 `5C4FC77CB0555B7978119E75883E05750E7A8BACAA3CD7239885427C4DF4B184`，仓库与游戏 `Mods/starcct` 一致。状态为**已部署、离线验证通过，待游戏内浅测**。
 
-**未启动游戏**：真实物品图标渲染、堆叠数字角标、右键菜单与商店窗口中的新名字均未在无头环境观察。最小浅测：正常启动后确认密钥图标为绿金房卡、名称显示为「重构密钥」、商店按钮与购买后提示用新名，并在已有旧存档里确认该物品仍能被识别和使用。
+**未启动游戏**：真实物品图标渲染、堆叠数字角标、右键菜单与商店窗口中的新名字均未在无头环境观察。最小浅测：正常启动后确认密钥图标为绿金房卡、塑料四档与箱装边缘顺滑无锯齿、密钥名称显示为「重构密钥」、商店按钮与购买后提示用新名，并在已有旧存档里确认该物品仍能被识别和使用。
 
