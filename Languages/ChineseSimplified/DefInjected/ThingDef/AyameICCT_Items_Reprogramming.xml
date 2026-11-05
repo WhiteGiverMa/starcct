@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <AyameICCT_ReprogrammingKey.label>重组密钥</AyameICCT_ReprogrammingKey.label>
+  <AyameICCT_ReprogrammingKey.label>重构密钥</AyameICCT_ReprogrammingKey.label>
   <AyameICCT_ReprogrammingKey.description>一次性授权密钥，能将非玩家阵营的机械体尸体归属改为己方，但不会将其复活或修复。每点带宽需求消耗一个密钥，小数向上取整。库存装得下时先随身收齐，装不下时分批送到尸体旁。全部密钥齐备后进行 600 tick 的重组作业，正常一倍速约 10 秒；只有成功完成重组时才扣除密钥。复活仍须使用支持该机械体的机械复活配方。</AyameICCT_ReprogrammingKey.description>
 </LanguageData>

@@ -2,7 +2,7 @@
 <Defs>
   <ThingDef ParentName="MechSerumBase" MayRequire="Ludeon.RimWorld.Biotech">
     <defName>AyameICCT_ReprogrammingKey</defName>
-    <label>reprogramming key</label>
+    <label>refactor key</label>
     <description>A disposable authorization key that rewrites a dead mechanoid's faction to your colony. This does not resurrect or repair the mechanoid. One key is required per point of the mechanoid's bandwidth cost; fractional costs are rounded up. The user collects the keys in their inventory when they all fit, otherwise delivers them to the corpse in batches. Once all required keys are ready, reprogramming takes 600 ticks (about 10 seconds at normal speed). Keys are consumed only when reprogramming finishes successfully. Resurrection still requires an appropriate mech resurrection recipe.</description>
     <graphicData>
       <texPath>Things/Item/Special/ReprogrammingKey</texPath>

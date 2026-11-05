@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <AyameICCT_ModName>星际茶餐厅</AyameICCT_ModName>
-  <AyameICCT_ModDescription>依照星际茶餐厅企业标准生产食品级聚丙烯塑料颗粒与片材，将加工过的食品封装为包装生存食品。支持塑料形态转换与工程塑料零部件制造，并在启用 Biotech 时提供收编机械体尸体的重组密钥。</AyameICCT_ModDescription>
+  <AyameICCT_ModDescription>依照星际茶餐厅企业标准生产食品级聚丙烯塑料颗粒与片材，将加工过的食品封装为包装生存食品。支持塑料形态转换与工程塑料零部件制造，并在启用 Biotech 时提供收编机械体尸体的重构密钥。</AyameICCT_ModDescription>
   <AyameICCT_IncludeNutrientPaste>可包装的食品包括营养膏</AyameICCT_IncludeNutrientPaste>
   <AyameICCT_IncludeNutrientPasteTip>允许三种食品包装配方使用营养膏作为原料。</AyameICCT_IncludeNutrientPasteTip>
   <AyameICCT_IncludeKibble>可包装的食品包括粗饲料</AyameICCT_IncludeKibble>
@@ -24,7 +24,7 @@
   <AyameICCT_KeyNoStagingSpace>尸体附近没有安全的密钥放置位置，操作中止。密钥未消耗。</AyameICCT_KeyNoStagingSpace>
   <AyameICCT_KeyTargetUnavailable>目标尸体已被搬起、移走、禁用或预约，无法重组。</AyameICCT_KeyTargetUnavailable>
   <AyameICCT_KeyInterrupted>重组条件已变化，操作中止。密钥未消耗。</AyameICCT_KeyInterrupted>
-  <AyameICCT_KeyCompleted>已消耗 {0} 个重组密钥，将{1}的归属改为己方。尸体尚未复活。</AyameICCT_KeyCompleted>
+  <AyameICCT_KeyCompleted>已消耗 {0} 个重构密钥，将{1}的归属改为己方。尸体尚未复活。</AyameICCT_KeyCompleted>
   <AyameICCT_ContactRestaurant>联系星际茶餐厅</AyameICCT_ContactRestaurant>
   <AyameICCT_ShopTitle>星际茶餐厅</AyameICCT_ShopTitle>
   <AyameICCT_ShopPlastic>批发塑料</AyameICCT_ShopPlastic>
