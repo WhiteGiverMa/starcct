@@ -16,8 +16,9 @@ Contact sheets, world-scale verification composites and an alpha/geometry
 report are written beside this script.
 
 Wall rotation semantics follow vanilla Placeworker_AttachedToWall: the wall is
-the cell in the rotation's facing direction (Rot North = wall to the north), so
-the *_north textures hold the full front view, exactly like WallLamp_north.
+the cell in the rotation's facing direction (Rot North = wall to the north).
+Map holograms are deliberately narrow top-down ribbons; the full frontal menu
+is retained only in WallHoloSignboard_UI.png and the detail preview crops.
 """
 
 from __future__ import annotations
@@ -60,11 +61,15 @@ WALL_BASE_OFFSETS = {
     "west": (-0.9, 0.0),
 }
 WALL_HOLO_OFFSETS = {
-    "north": (0.0, 1.25),
-    "south": (0.0, -0.35),
-    "east": (0.55, 0.45),
-    "west": (-0.55, 0.45),
+    # The square hologram canvas is centred just inside the room. The actual
+    # pixels are anchored to the base emitter below, rather than to this centre.
+    "north": (0.0, 0.72),
+    "south": (0.0, -0.72),
+    "east": (0.72, 0.0),
+    "west": (-0.72, 0.0),
 }
+# The build-menu icon deliberately retains the old, full frontal composition.
+WALL_UI_HOLO_OFFSET = (0.0, 1.25)
 # Direction of the supporting wall cell for each rotation (vanilla semantics).
 WALL_CELL = {"north": (0, 1), "south": (0, -1), "east": (1, 0), "west": (-1, 0)}
 RESAMPLE = Image.Resampling.LANCZOS
@@ -1782,16 +1787,27 @@ def draw_char_siu_rice(image, cx, cy, s):
         (-4, 12, 28, 6, 5202),
         (68, 10, 18, 5, 5203),
     ):
-        sp.polygon([M(*q) for q in blob_points(bx, by, rx, ry, sd, 22)], (150, 70, 22, 190))
         sp.polygon(
-            [M(*q) for q in blob_points(bx - 4, by - 2, rx * 0.6, ry * 0.45, sd + 7, 18)],
+            [M(*q) for q in blob_points(bx, by, rx, ry, sd, 22)], (150, 70, 22, 190)
+        )
+        sp.polygon(
+            [
+                M(*q)
+                for q in blob_points(bx - 4, by - 2, rx * 0.6, ry * 0.45, sd + 7, 18)
+            ],
             (212, 128, 46, 200),
         )
     image.alpha_composite(sauce.filter(ImageFilter.GaussianBlur(1.8 * HOLO_SCALE)))
     for dx, dy in ((-50, 12), (-20, 4), (6, 14), (70, 6)):
         q = M(dx, dy)
-        p.ellipse((q[0] - 2.4 * s, q[1] - 1.4 * s, q[0] + 2.4 * s, q[1] + 1.4 * s), (176, 88, 26, 230))
-        p.ellipse((q[0] - 1.2 * s, q[1] - 1.0 * s, q[0] + 0.2 * s, q[1] - 0.2 * s), (255, 214, 150, 230))
+        p.ellipse(
+            (q[0] - 2.4 * s, q[1] - 1.4 * s, q[0] + 2.4 * s, q[1] + 1.4 * s),
+            (176, 88, 26, 230),
+        )
+        p.ellipse(
+            (q[0] - 1.2 * s, q[1] - 1.0 * s, q[0] + 0.2 * s, q[1] - 0.2 * s),
+            (255, 214, 150, 230),
+        )
 
     # Greens behind, then shingled char siu (back to front), then the egg.
     choy_sum(p, M, (4, -16), (98, -60), -1, 5301, s)
@@ -1800,7 +1816,10 @@ def draw_char_siu_rice(image, cx, cy, s):
         ((14, -36, 14), (-6, -32, 4), (-26, -26, -6), (-46, -18, -14), (-62, -8, -22))
     ):
         q = M(sx + 1, sy + 13)
-        p.ellipse((q[0] - 26 * s, q[1] - 6 * s, q[0] + 26 * s, q[1] + 6 * s), (120, 64, 20, 120))
+        p.ellipse(
+            (q[0] - 26 * s, q[1] - 6 * s, q[0] + 26 * s, q[1] + 6 * s),
+            (120, 64, 20, 120),
+        )
         char_siu_slice(p, M, sx, sy, ang, 5400 + i, s)
     sunny_egg(p, M, 44, -4, s, 5501)
     # Purple onion rings and scallion confetti.
@@ -2160,6 +2179,53 @@ def draw_wall_hologram_side(panel_ss, mirror):
     return clip_alpha(finish(image, HOLO_SIZE), bounds)
 
 
+# ------------------------------------------------------ wall: top-down maps
+# One physical screen, projected once onto the XZ plane. All four directional
+# PNGs bake the SAME rigid rotation; Graphic_Multi selects, it does not rotate
+# four independently supplied materials. Never typeset the east/west separately.
+def cardinal_images(north):
+    return {
+        "north": north,
+        "east": north.transpose(Image.Transpose.ROTATE_270),
+        "south": north.transpose(Image.Transpose.ROTATE_180),
+        "west": north.transpose(Image.Transpose.ROTATE_90),
+    }
+
+
+def draw_wall_map_north(panel_ss):
+    """Full menu foreshortened to 0.16 cells, plus a 0.06-cell emitter fan.
+
+    The supporting north wall is at z=1. The slot is at z=0.8414;
+    the screen runs z=0.78..0.62, toward the room (negative z).
+    Rotation about the canvas centre also rotates its XML offset about the
+    building centre: R(x,z)=(z,-x), i.e. clockwise in PNG coordinates.
+    """
+    image = new_canvas(HOLO_SIZE, HOLO_SCALE)
+    slot = wall_base_world("north", 128, 143)[1]
+    points = [(-0.258, slot), (0.258, slot), (0.50, 0.78), (-0.50, 0.78)]
+    polygon = [wall_holo_xy("north", x, z) for x, z in points]
+    mask = polygon_mask(image.size, polygon, HOLO_SCALE)
+    image.alpha_composite(colour_layer(image.size, (92, 255, 42), alpha_scaled(mask, 0.28)))
+    p = Pen(image, HOLO_SCALE)
+    for i in range(13):
+        t = i / 12
+        p.line([wall_holo_xy("north", -0.258 + 0.516*t, slot),
+                wall_holo_xy("north", -0.50 + t, 0.78)],
+               (200, 255, 150, 100 if i % 3 == 0 else 48), 0.65)
+    p.line(polygon[:2], (235, 255, 202, 240), 1.8)
+    # Preserve the actual frontal artwork, not a new upright top-view menu.
+    x0, y0 = wall_holo_xy("north", -0.50, 0.78)
+    x1, y1 = wall_holo_xy("north", 0.50, 0.62)
+    panel = panel_ss.crop(tuple(round(v * HOLO_SCALE) for v in WALL_PANEL))
+    panel = panel.resize((round((x1-x0)*HOLO_SCALE), round((y1-y0)*HOLO_SCALE)), RESAMPLE)
+    image.alpha_composite(panel, (round(x0*HOLO_SCALE), round(y0*HOLO_SCALE)))
+    # Soft local bloom, not a huge opaque green trapezoid hiding the metal base.
+    halo = image.getchannel("A").filter(ImageFilter.GaussianBlur(1.5 * HOLO_SCALE))
+    glow = colour_layer(image.size, (80, 255, 30), alpha_scaled(halo, 0.22))
+    glow.alpha_composite(image)
+    return finish(glow, HOLO_SIZE)
+
+
 # -------------------------------------------------------------- wall: bases
 def wall_plaque(p: Pen, box, vertical=False):
     x0, y0, x1, y1 = box
@@ -2314,7 +2380,7 @@ def make_ui(hologram, base):
 def make_wall_ui(hologram, base):
     half = 0.96
     ox, oz = WALL_BASE_OFFSETS["north"]
-    hx, hz = WALL_HOLO_OFFSETS["north"]
+    hx, hz = WALL_UI_HOLO_OFFSET
     z0 = 0.48
     return world_composite(
         [
@@ -2522,15 +2588,15 @@ def make_wall_preview(wall_images):
     label_font = get_font(str(FONT_LATIN), 18)
     d.text(
         (20, 18),
-        "ICCT  /  WALL HOLO SIGNBOARD  —  world-scale composites (base 1x1 + hologram 2.6 @ XML offsets)",
+        "ICCT  /  WALL HOLO SIGNBOARD  —  TOP-DOWN NARROW RIBBONS (base 1x1 + hologram 2.6 @ XML offsets)",
         font=title_font,
         fill=(222, 255, 181, 255),
     )
     labels = {
-        "north": "ROT NORTH  · wall to the north · front",
-        "south": "ROT SOUTH  · wall to the south · back",
-        "east": "ROT EAST  · wall to the east · side",
-        "west": "ROT WEST  · wall to the west · side",
+        "north": "ROT NORTH  · wall north · 1.00 x 0.22-cell ribbon / 0 deg",
+        "south": "ROT SOUTH  · wall south · 1.00 x 0.22-cell ribbon / 180 deg",
+        "east": "ROT EAST  · wall east · 1.00 x 0.22-cell ribbon / rigid rotation",
+        "west": "ROT WEST  · wall west · 1.00 x 0.22-cell ribbon / rigid rotation",
     }
     for i, (rot, view) in enumerate(views):
         x = 20 + i * (vw + 20)
@@ -2612,8 +2678,8 @@ def make_preview(images, wall_images):
         (
             "Standing: tomato & egg rice / curry katsu rice; beam skirt seated in the base trough",
             "Wall: Sorrowful Rice (char siu, sunny egg, choy sum) on a rooster bowl",
-            "Wall rotations follow vanilla Placeworker_AttachedToWall (_north = front)",
-            "1024 px holograms / transparent RGBA / see preview_wall.png & verify_standing.png",
+            "Wall map ribbons follow vanilla Placeworker_AttachedToWall and top-down foreshortening",
+            "Full wall menu is preserved in UI; map projections stay narrow at the base emitter",
         )
     ):
         d.text((30, 1040 + i * 30), line, font=label_font, fill=(215, 242, 194, 255))
@@ -2654,19 +2720,16 @@ def anchor_report():
         "holo_emission_row": STAND_EMIT_Y,
         "holo_clip": list(STAND_CLIP),
     }
+    slot = wall_base_world("north", 128, 143)[1]
     wall = {
-        "north_slot_world": [round(v, 4) for v in wall_base_world("north", 128, 143)],
-        "north_slot_holo_row": round(
-            wall_holo_xy("north", 0, wall_base_world("north", 128, 143)[1])[1], 1
-        ),
-        "south_slot_world": [round(v, 4) for v in wall_base_world("south", 128, 12.5)],
-        "south_slot_holo_row": round(
-            wall_holo_xy("south", 0, wall_base_world("south", 128, 12.5)[1])[1], 1
-        ),
-        "east_slot_world_x": round(wall_base_world("east", 13.5, 128)[0], 4),
-        "east_slot_holo_col": round(
-            wall_holo_xy("east", wall_base_world("east", 13.5, 128)[0], 0)[0], 1
-        ),
+        "rotation_contract": "baked clockwise quarter turns; no UV mirror; quaternion identity",
+        "north_slot_world": [0.0, round(slot, 4)],
+        "east_slot_world": [round(slot, 4), 0.0],
+        "south_slot_world": [0.0, -round(slot, 4)],
+        "west_slot_world": [-round(slot, 4), 0.0],
+        "panel_world_depth": 0.16,
+        "beam_world_depth": round(slot - 0.78, 4),
+        "panel_world_width": 1.0,
     }
     return {"standing": stand, "wall": wall}
 
@@ -2704,19 +2767,24 @@ def main():
     images["HoloSignboard_UI.png"] = make_ui(holo_south, base_south)
 
     panel_ss = draw_wall_panel_ss()
-    wall_north = draw_wall_hologram_north(panel_ss)
+    # Keep the full frontal panel exclusively for the build icon and zooms.
+    wall_ui_hologram = draw_wall_hologram_north(panel_ss)
     wall_base_north = draw_wall_base_north()
+    map_holograms = cardinal_images(draw_wall_map_north(panel_ss))
+    map_bases = cardinal_images(wall_base_north)
     wall_images = {
         "WallHoloSignboardBase_north.png": wall_base_north,
-        "WallHoloSignboardBase_south.png": draw_wall_base_south(),
-        "WallHoloSignboardBase_east.png": draw_wall_base_side(False),
-        "WallHoloSignboardBase_west.png": draw_wall_base_side(True),
-        "WallHoloSignboardHologram_north.png": wall_north,
-        "WallHoloSignboardHologram_south.png": draw_wall_hologram_south(panel_ss),
-        "WallHoloSignboardHologram_east.png": draw_wall_hologram_side(panel_ss, False),
-        "WallHoloSignboardHologram_west.png": draw_wall_hologram_side(panel_ss, True),
+        "WallHoloSignboardBase_south.png": map_bases["south"],
+        "WallHoloSignboardBase_east.png": map_bases["east"],
+        "WallHoloSignboardBase_west.png": map_bases["west"],
+        "WallHoloSignboardHologram_north.png": map_holograms["north"],
+        "WallHoloSignboardHologram_south.png": map_holograms["south"],
+        "WallHoloSignboardHologram_east.png": map_holograms["east"],
+        "WallHoloSignboardHologram_west.png": map_holograms["west"],
     }
-    wall_images["WallHoloSignboard_UI.png"] = make_wall_ui(wall_north, wall_base_north)
+    wall_images["WallHoloSignboard_UI.png"] = make_wall_ui(
+        wall_ui_hologram, wall_base_north
+    )
 
     report = {"anchors": anchor_report()}
     save_set(images, OUT, report)
@@ -2724,7 +2792,7 @@ def main():
     make_standing_verification(base_south, holo_south)
     make_wall_preview(wall_images)
     make_preview(images, wall_images)
-    make_detail_previews(holo_south, wall_north)
+    make_detail_previews(holo_south, wall_ui_hologram)
     REPORT.write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
     )

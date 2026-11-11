@@ -117,7 +117,10 @@ namespace AyameICCT
             Vector3 drawPos = HologramDrawPos(parent, data);
             Graphics.DrawMesh(graphic.MeshAt(parent.Rotation),
                 drawPos,
-                Quaternion.identity, graphic.MatAt(parent.Rotation), 0);
+                // Match Graphic.DrawWorker's rotation contract. Four supplied
+                // directional textures already bake their rotation (identity);
+                // a graphic using fallback directions may need a quaternion.
+                graphic.QuatFromRot(parent.Rotation), graphic.MatAt(parent.Rotation, parent), 0);
         }
 
         internal static Vector3 HologramDrawPos(Thing parent, GraphicData data)

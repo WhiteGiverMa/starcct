@@ -3,6 +3,8 @@ param(
     [string]$WorkDir = 'C:\Users\A1337\AppData\Local\Temp\opencode\starcct-holosignboard-20261111\qa'
 )
 $ErrorActionPreference = 'Stop'
+py -3.15 (Join-Path $PSScriptRoot 'test_wall_rotation.py')
+if ($LASTEXITCODE -ne 0) { throw 'Wall texture rotation QA failed' }
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 if (!(Test-Path (Join-Path $BaselineQa 'QA.csproj'))) {
     throw "Baseline 706-check QA project not found: $BaselineQa"

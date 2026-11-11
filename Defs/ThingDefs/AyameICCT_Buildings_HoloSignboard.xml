@@ -65,6 +65,9 @@
     <graphicData>
       <texPath>Things/Building/WallHoloSignboard/WallHoloSignboardBase</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
+      <!-- All four PNGs bake rigid top-down rotations; never rotate or mirror them again. -->
+      <drawRotated>false</drawRotated>
+      <allowFlip>false</allowFlip>
       <drawSize>(1, 1)</drawSize>
       <drawOffsetNorth>(0,0,0.9)</drawOffsetNorth>
       <drawOffsetSouth>(0,0,-0.9)</drawOffsetSouth>
@@ -108,12 +111,14 @@
         <graphicDataExtra>
           <texPath>Things/Building/WallHoloSignboard/WallHoloSignboardHologram</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
+          <drawRotated>false</drawRotated>
+          <allowFlip>false</allowFlip>
           <shaderType>TransparentPostLight</shaderType>
           <drawSize>(2.6, 2.6)</drawSize>
-          <drawOffsetNorth>(0,0,1.25)</drawOffsetNorth>
-          <drawOffsetSouth>(0,0,-0.35)</drawOffsetSouth>
-          <drawOffsetWest>(-0.55,0,0.45)</drawOffsetWest>
-          <drawOffsetEast>(0.55,0,0.45)</drawOffsetEast>
+          <drawOffsetNorth>(0,0,0.72)</drawOffsetNorth>
+          <drawOffsetSouth>(0,0,-0.72)</drawOffsetSouth>
+          <drawOffsetWest>(-0.72,0,0)</drawOffsetWest>
+          <drawOffsetEast>(0.72,0,0)</drawOffsetEast>
         </graphicDataExtra>
       </li>
     </comps>

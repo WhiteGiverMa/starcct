@@ -22,18 +22,26 @@
       ]
     },
     "wall": {
+      "rotation_contract": "baked clockwise quarter turns; no UV mirror; quaternion identity",
       "north_slot_world": [
         0.0,
         0.8414
       ],
-      "north_slot_holo_row": 672.9,
+      "east_slot_world": [
+        0.8414,
+        0.0
+      ],
       "south_slot_world": [
         0.0,
-        -0.4488
+        -0.8414
       ],
-      "south_slot_holo_row": 550.9,
-      "east_slot_world_x": 0.4527,
-      "east_slot_holo_col": 473.7
+      "west_slot_world": [
+        -0.8414,
+        0.0
+      ],
+      "panel_world_depth": 0.16,
+      "beam_world_depth": 0.0614,
+      "panel_world_width": 1.0
     }
   },
   "HoloSignboard/HoloSignboardBase_south.png": {
@@ -313,25 +321,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      18,
-      0,
-      239,
-      53
+      17,
+      33,
+      238,
+      134
     ],
     "bbox_alpha_ge32": [
-      20,
-      0,
-      237,
-      51
+      19,
+      35,
+      236,
+      132
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 87,
-    "transparent_pixels": 54617,
-    "semitransparent_pixels": 938,
-    "opaque_pixels": 9981,
-    "coverage_percent": 15.929,
-    "sha256": "86957ed034608ac342356c9fb33115d54e7e2f438506d4a0000175b40820899c"
+    "alpha_levels": 100,
+    "transparent_pixels": 44986,
+    "semitransparent_pixels": 1741,
+    "opaque_pixels": 18809,
+    "coverage_percent": 30.159,
+    "sha256": "e53ee6e6fc63c4e898e685b80fa411e07c78d6000d0922705b07e1eed618498d"
   },
   "WallHoloSignboard/WallHoloSignboardBase_east.png": {
     "size": [
@@ -340,25 +348,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      0,
-      6,
-      59,
-      195
+      33,
+      18,
+      134,
+      239
     ],
     "bbox_alpha_ge32": [
-      0,
-      8,
-      57,
-      193
+      35,
+      20,
+      132,
+      237
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 94,
-    "transparent_pixels": 55363,
-    "semitransparent_pixels": 870,
-    "opaque_pixels": 9303,
-    "coverage_percent": 14.852,
-    "sha256": "3e3bf27d54ade22eb9f4da85447be37c79b75f784605b98f516c191943f94954"
+    "alpha_levels": 100,
+    "transparent_pixels": 44986,
+    "semitransparent_pixels": 1741,
+    "opaque_pixels": 18809,
+    "coverage_percent": 30.159,
+    "sha256": "61b61347588c075cddaf434fecda9cc274d71c470bb46efedac9b899e4a696f9"
   },
   "WallHoloSignboard/WallHoloSignboardBase_west.png": {
     "size": [
@@ -367,25 +375,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      198,
-      6,
-      256,
-      195
+      122,
+      17,
+      223,
+      238
     ],
     "bbox_alpha_ge32": [
-      200,
-      8,
-      256,
-      193
+      124,
+      19,
+      221,
+      236
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 92,
-    "transparent_pixels": 55510,
-    "semitransparent_pixels": 867,
-    "opaque_pixels": 9159,
-    "coverage_percent": 14.793,
-    "sha256": "09b2bcb5bd8b7dbd7d5a284d0ed69314b86a59df40891e45f1804af882560668"
+    "alpha_levels": 100,
+    "transparent_pixels": 44986,
+    "semitransparent_pixels": 1741,
+    "opaque_pixels": 18809,
+    "coverage_percent": 30.159,
+    "sha256": "ee1fac70b109e03ba266dd1a2b1064dee608dadcb588602284a5ad1ff5c4f2a4"
   },
   "WallHoloSignboard/WallHoloSignboardHologram_north.png": {
     "size": [
@@ -394,25 +402,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      261,
-      75,
-      764,
-      690
+      312,
+      461,
+      712,
+      554
     ],
     "bbox_alpha_ge32": [
-      275,
-      90,
-      750,
-      684
+      314,
+      463,
+      710,
+      552
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 254,
-    "transparent_pixels": 748982,
-    "semitransparent_pixels": 244044,
-    "opaque_pixels": 55550,
-    "coverage_percent": 17.233,
-    "sha256": "5ccdd57944de7244c7d88f4ffafdf38c56dc4945cbdbedabdca5fb319f2d49f2"
+    "alpha_levels": 238,
+    "transparent_pixels": 1014791,
+    "semitransparent_pixels": 29201,
+    "opaque_pixels": 4584,
+    "coverage_percent": 1.949,
+    "sha256": "9182be31f673ccdf0894a02d820b53114b01edc9be8d3d9eec08d1481487885a"
   },
   "WallHoloSignboard/WallHoloSignboardHologram_south.png": {
     "size": [
@@ -421,25 +429,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      264,
-      182,
-      761,
-      569
+      312,
+      470,
+      712,
+      563
     ],
     "bbox_alpha_ge32": [
-      283,
-      201,
-      741,
-      563
+      314,
+      472,
+      710,
+      561
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 252,
-    "transparent_pixels": 863081,
-    "semitransparent_pixels": 185329,
-    "opaque_pixels": 166,
-    "coverage_percent": 9.615,
-    "sha256": "3bb669b0c37d928706546aa9174433c7c9928704521c30098eee152f21f9d140"
+    "alpha_levels": 238,
+    "transparent_pixels": 1014791,
+    "semitransparent_pixels": 29201,
+    "opaque_pixels": 4584,
+    "coverage_percent": 1.949,
+    "sha256": "c1b2b491a2d1d2c06ef9ed920a00ec69a71baccdc93cc8713a5c182d55101d18"
   },
   "WallHoloSignboard/WallHoloSignboardHologram_east.png": {
     "size": [
@@ -448,25 +456,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      176,
-      277,
-      495,
-      755
+      470,
+      312,
+      563,
+      712
     ],
     "bbox_alpha_ge32": [
-      191,
-      291,
-      488,
-      747
+      472,
+      314,
+      561,
+      710
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 254,
-    "transparent_pixels": 910327,
-    "semitransparent_pixels": 137479,
-    "opaque_pixels": 770,
-    "coverage_percent": 8.304,
-    "sha256": "cae644b5704bebe29c4f646ea07124dffda4307b5984a08af3c4e1c68265d2de"
+    "alpha_levels": 238,
+    "transparent_pixels": 1014791,
+    "semitransparent_pixels": 29201,
+    "opaque_pixels": 4584,
+    "coverage_percent": 1.949,
+    "sha256": "cab189dc81b1d632c8e5dec524f1aa73d13cc7b9c0f3d248c562c9157ff3aeca"
   },
   "WallHoloSignboard/WallHoloSignboardHologram_west.png": {
     "size": [
@@ -475,25 +483,25 @@
     ],
     "mode": "RGBA",
     "bbox_alpha_gt0": [
-      530,
-      277,
-      848,
-      755
+      461,
+      312,
+      554,
+      712
     ],
     "bbox_alpha_ge32": [
-      536,
-      291,
-      833,
-      747
+      463,
+      314,
+      552,
+      710
     ],
     "alpha_min": 0,
     "alpha_max": 255,
-    "alpha_levels": 254,
-    "transparent_pixels": 910474,
-    "semitransparent_pixels": 137375,
-    "opaque_pixels": 727,
-    "coverage_percent": 8.315,
-    "sha256": "77f894839919d62704f72a533b75ffa63bde2352876c3d169d2f68eaf2fe40f4"
+    "alpha_levels": 238,
+    "transparent_pixels": 1014791,
+    "semitransparent_pixels": 29201,
+    "opaque_pixels": 4584,
+    "coverage_percent": 1.949,
+    "sha256": "cd8223f1527d94a1f48984b80eefae799f605cfa21872e058798c1306ea5c4a4"
   },
   "WallHoloSignboard/WallHoloSignboard_UI.png": {
     "size": [

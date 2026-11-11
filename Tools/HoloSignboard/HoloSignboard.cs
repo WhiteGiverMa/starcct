@@ -60,11 +60,14 @@ internal static partial class Program
         }
         else
         {
+            foreach (var graphicXml in new[] { xml.Element("graphicData")!, holoXml })
+                Check(graphicXml.Element("drawRotated")!.Value == "false"
+                    && graphicXml.Element("allowFlip")!.Value == "false", "baked wall textures cannot rotate or mirror twice");
             Check(xml.Element("building")!.Element("isAttachment")!.Value == "true"
                 && xml.Element("building")!.Element("isEdifice")!.Value == "false", "wall sign is non-edifice attachment");
             Check(xml.Element("placeWorkers")!.Element("li")!.Value == "Placeworker_AttachedToWall"
                 && xml.Element("terrainAffordanceNeeded")!.Attribute("IsNull")!.Value == "True", "wall placement contract");
-            foreach (var pair in new Dictionary<string, string> { ["North"] = "(0,0,1.25)", ["South"] = "(0,0,-0.35)", ["West"] = "(-0.55,0,0.45)", ["East"] = "(0.55,0,0.45)" })
+            foreach (var pair in new Dictionary<string, string> { ["North"] = "(0,0,0.72)", ["South"] = "(0,0,-0.72)", ["West"] = "(-0.72,0,0)", ["East"] = "(0.72,0,0)" })
                 Check(holoXml.Element("drawOffset" + pair.Key)!.Value == pair.Value, "wall projection offset " + pair.Key);
             foreach (var pair in new Dictionary<string, string> { ["North"] = "(0,0,0.9)", ["South"] = "(0,0,-0.9)", ["West"] = "(-0.9,0,0)", ["East"] = "(0.9,0,0)" })
                 Check(xml.Element("graphicData")!.Element("drawOffset" + pair.Key)!.Value == pair.Value, "wall base offset " + pair.Key);
@@ -74,7 +77,7 @@ internal static partial class Program
             var draw = assembly.MainModule.Types.Single(t => t.FullName == typeof(CompHoloSignboard).FullName)
                 .Methods.Single(m => m.Name == "PostDraw");
             var calls = draw.Body.Instructions.Select(i => i.Operand).OfType<Mono.Cecil.MethodReference>().Select(m => m.Name).ToList();
-            foreach (string call in new[] { "IsIlluminated", "MeshAt", "MatAt", "HologramDrawPos", "DrawMesh" })
+            foreach (string call in new[] { "IsIlluminated", "MeshAt", "MatAt", "QuatFromRot", "HologramDrawPos", "DrawMesh" })
                 Check(calls.Contains(call), "production hologram IL calls " + call);
             var buy = assembly.MainModule.Types.Single(t => t.FullName == "AyameICCT.CommsConsoleShop")
                 .NestedTypes.Single(t => t.Name == "Dialog_ShopMerchant").Methods.Single(m => m.Name == "TryBuy");
@@ -131,14 +134,15 @@ internal static partial class Program
             DesignationDefOf.SmoothWall ??= new DesignationDef { defName = "SmoothWall" };
             var supportDef = new ThingDef { defName = "QA_WallSignSupport", thingClass = typeof(Building), category = ThingCategory.Building,
                 useHitPoints = false, fillPercent = 1, blockLight = true, passability = Traversability.Impassable,
-                building = new BuildingProperties { isEdifice = true } };
+                building = new BuildingProperties { isEdifice = true, supportsWallAttachments = true } };
             MarkSynthetic(supportDef); DefDatabase<ThingDef>.Add(supportDef);
-            supportWall = (Building)GenSpawn.Spawn(ThingMaker.MakeThing(supportDef), new IntVec3(25, 0, 25), map);
+            supportWall = (Building)GenSpawn.Spawn(ThingMaker.MakeThing(supportDef), new IntVec3(25, 0, 24), map);
         }
         var sign = (Building_HoloSignboard)ThingMaker.MakeThing(def);
         sign.SetFactionDirect(Faction.OfPlayer);
         GenSpawn.Spawn(sign, new IntVec3(25, 0, 25), map, Rot4.South);
-        if (wallMounted) Check(supportWall!.Spawned && sign.Spawned && supportWall.Position == sign.Position, "wall sign shares its occupied cell with an impassable supporting wall");
+        if (wallMounted) Check(supportWall!.Spawned && sign.Spawned
+            && supportWall.Position == sign.Position + IntVec3.South, "wall sign occupies room cell, not supporting wall cell");
         void Power(bool on) => Field(typeof(CompPowerTrader), "powerOnInt").SetValue(sign.GetComp<CompPowerTrader>(), on);
         void Flick(bool on) => Field(typeof(CompFlickable), "switchOnInt").SetValue(sign.GetComp<CompFlickable>(), on);
         bool Context(Pawn? actor = null) => (bool)ShopPurchaseType.GetMethod("IsContextValid", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, new object?[] { sign, actor })!;
@@ -149,10 +153,10 @@ internal static partial class Program
         var graphics = ((CompProperties_HoloSignboard)sign.GetComp<CompHoloSignboard>().props).graphicDataExtra;
         if (wallMounted)
         {
-            graphics.drawOffsetNorth = new UnityEngine.Vector3(0, 0, 1.25f);
-            graphics.drawOffsetSouth = new UnityEngine.Vector3(0, 0, -0.35f);
-            graphics.drawOffsetWest = new UnityEngine.Vector3(-0.55f, 0, 0.45f);
-            graphics.drawOffsetEast = new UnityEngine.Vector3(0.55f, 0, 0.45f);
+            graphics.drawOffsetNorth = new UnityEngine.Vector3(0, 0, 0.72f);
+            graphics.drawOffsetSouth = new UnityEngine.Vector3(0, 0, -0.72f);
+            graphics.drawOffsetWest = new UnityEngine.Vector3(-0.72f, 0, 0f);
+            graphics.drawOffsetEast = new UnityEngine.Vector3(0.72f, 0, 0f);
         }
         if (!wallMounted)
         {
@@ -166,6 +170,29 @@ internal static partial class Program
         foreach (var rotation in new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West })
         {
             sign.Rotation = rotation;
+            if (wallMounted)
+            {
+                // Placement is evaluated before spawning: the worker deliberately
+                // rejects an already present same-facing attachment (even thingToIgnore).
+                var placementCell = sign.Position + new IntVec3(8, 0, 8);
+                supportWall!.DeSpawn();
+                GenSpawn.Spawn(supportWall, placementCell + GenAdj.CardinalDirections[rotation.AsInt], map);
+                Check(new Placeworker_AttachedToWall().AllowsPlacing(def, placementCell, rotation, map).Accepted,
+                    "actual vanilla attached-to-wall placement accepts facing support " + rotation);
+                supportWall.DeSpawn();
+                GenSpawn.Spawn(supportWall, sign.Position + GenAdj.CardinalDirections[rotation.AsInt], map);
+                // Test the engine selection contract without requiring a GPU or ContentFinder.
+                var multi = new Graphic_Multi { data = new GraphicData { drawRotated = false, allowFlip = false } };
+                var materials = new UnityEngine.Material[4];
+                for (int i = 0; i < materials.Length; i++)
+                    materials[i] = (UnityEngine.Material)System.Runtime.CompilerServices.RuntimeHelpers.GetUninitializedObject(typeof(UnityEngine.Material));
+                Field(typeof(Graphic_Multi), "mats").SetValue(multi, materials);
+                Check(ReferenceEquals(multi.MatAt(rotation, sign), materials[rotation.AsInt]), "actual Graphic_Multi selects correct directional material " + rotation);
+                Check(!multi.ShouldDrawRotated && !multi.EastFlipped && !multi.WestFlipped
+                    && multi.DrawRotatedExtraAngleOffset == 0, "complete baked graphic has no fallback flip or rotation " + rotation);
+                var quat = multi.QuatFromRot(rotation);
+                Check(quat.x == 0 && quat.y == 0 && quat.z == 0 && quat.w == 1, "actual Graphic quaternion is identity for baked directions " + rotation);
+            }
             var drawPos = (UnityEngine.Vector3)typeof(CompHoloSignboard).GetMethod("HologramDrawPos", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, new object[] { sign, graphics })!;
             Check(drawPos.y >= Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead)
                 && drawPos.y > Altitudes.AltitudeFor(AltitudeLayer.Building)
@@ -291,6 +318,8 @@ internal static partial class Program
         pawn.jobs.curDriver.asleep = false; Check(Active(), "waking restores current sight thought");
         pawn.DeSpawn(); Check(!Active(), "despawned artist sees no debuff");
         sign.DeSpawn();
+        sign.GetComp<CompHoloSignboard>().PostDraw();
+        Check(!Lit(), "despawned/minified inner sign skips material resolution and hologram draw even with retained power state");
         supportWall?.DeSpawn();
         Check(!Context() && (bool)Field(typeof(Gizmo), "disabled").GetValue(Command())! && !Lit(), "despawned sign disables all use and projection");
     }
