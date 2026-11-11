@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>AyameICCT_SawStrangeSignboard</defName>
+    <workerClass>AyameICCT.ThoughtWorker_SawStrangeSignboard</workerClass>
+    <thoughtClass>Thought_Situational</thoughtClass>
+    <validWhileDespawned>false</validWhileDespawned>
+    <requiredTraits>
+      <li>TorturedArtist</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>saw tacky cha chaan teng sign</label>
+        <description>Red and green together—what an eyesore.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

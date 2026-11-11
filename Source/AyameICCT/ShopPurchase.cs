@@ -159,10 +159,17 @@ namespace AyameICCT
             return true;
         }
 
-        internal static bool IsContextValid(Building_CommsConsole console, Pawn actor)
+        internal static bool IsContextValid(Building console, Pawn actor)
         {
-            if (console == null || actor == null || !console.Spawned || console.Map == null
-                || !actor.Spawned || actor.Map != console.Map)
+            if (RestaurantTerminal.FailureReason(console) != null || !RestaurantTerminal.CanUseNow(console))
+            {
+                return false;
+            }
+            if (actor == null)
+            {
+                return console is Building_HoloSignboard;
+            }
+            if (!actor.Spawned || actor.Map != console.Map)
             {
                 return false;
             }
@@ -170,16 +177,11 @@ namespace AyameICCT
             {
                 return false;
             }
-            if (!console.CanUseCommsNow)
-            {
-                return false;
-            }
             if (!actor.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
             {
                 return false;
             }
-            IntVec3 interactionCell = console.InteractionCell;
-            return interactionCell.InBounds(console.Map) && actor.Position == interactionCell;
+            return RestaurantTerminal.IsAtTerminal(console, actor);
         }
 
         internal static int CountHomeSilver(Map map)
@@ -205,7 +207,7 @@ namespace AyameICCT
             return (int)total;
         }
 
-        internal static bool TryPurchase(Building_CommsConsole console, Pawn actor,
+        internal static bool TryPurchase(Building console, Pawn actor,
             int granules, int sheets, int keys, out ShopPurchaseFailure failure, out int charged)
         {
             failure = ShopPurchaseFailure.None;

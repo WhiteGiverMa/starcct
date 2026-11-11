@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>AyameICCT_HoloSignboard</defName>
+    <label>holographic cha chaan teng franchise sign</label>
+    <description>An electronic sign for an Interstellar Cha Chaan Teng franchise. Place online orders and contact the restaurant here.\nIts down-to-earth charm is reassuring, though wandering artists on the rim occasionally have something to say about its taste.</description>
+    <thingClass>AyameICCT.Building_HoloSignboard</thingClass>
+    <uiIconPath>Things/Building/HoloSignboard/HoloSignboard_UI</uiIconPath>
+    <graphicData>
+      <texPath>Things/Building/HoloSignboard/HoloSignboardBase</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2.4, 1.6)</drawSize>
+    </graphicData>
+    <size>(2, 1)</size>
+    <rotatable>true</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories><li>BuildingsMisc</li></thingCategories>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Mass>20</Mass>
+    </statBases>
+    <costList>
+      <Steel>80</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <designationCategory>Misc</designationCategory>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+    </researchPrerequisites>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>200</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(10,255,10,1)</glowColor>
+      </li>
+      <li Class="AyameICCT.CompProperties_HoloSignboard">
+        <graphicDataExtra>
+          <texPath>Things/Building/HoloSignboard/HoloSignboardHologram</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>TransparentPostLight</shaderType>
+          <drawSize>(3.8, 3.8)</drawSize>
+          <drawOffsetSouth>(0,0,0.73)</drawOffsetSouth>
+          <drawOffsetNorth>(0,0,0.73)</drawOffsetNorth>
+        </graphicDataExtra>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="BuildingBase">
+    <defName>AyameICCT_WallHoloSignboard</defName>
+    <label>wall-mounted holographic cha chaan teng sign</label>
+    <description>A wall-mounted electronic sign for an Interstellar Cha Chaan Teng franchise. Place online orders and contact the restaurant here.\nThe sign cycles through the chef's signature dish, “Sorrowful Rice”. Wandering artists on the rim may still despise its red-and-green color scheme, but the rich aroma of char siu seems almost to waft through the holographic screen.</description>
+    <thingClass>AyameICCT.Building_HoloSignboard</thingClass>
+    <uiIconPath>Things/Building/WallHoloSignboard/WallHoloSignboard_UI</uiIconPath>
+    <graphicData>
+      <texPath>Things/Building/WallHoloSignboard/WallHoloSignboardBase</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1, 1)</drawSize>
+      <drawOffsetNorth>(0,0,0.9)</drawOffsetNorth>
+      <drawOffsetSouth>(0,0,-0.9)</drawOffsetSouth>
+      <drawOffsetWest>(-0.9,0,0)</drawOffsetWest>
+      <drawOffsetEast>(0.9,0,0)</drawOffsetEast>
+      <damageData><enabled>false</enabled></damageData>
+    </graphicData>
+    <size>(1, 1)</size>
+    <rotatable>true</rotatable>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <passability>Standable</passability>
+    <pathCost>0</pathCost>
+    <fillPercent>0.2</fillPercent>
+    <terrainAffordanceNeeded IsNull="True" />
+    <building><isEdifice>false</isEdifice><isAttachment>true</isAttachment></building>
+    <placeWorkers><li>Placeworker_AttachedToWall</li></placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories><li>BuildingsMisc</li></thingCategories>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Mass>8</Mass>
+    </statBases>
+    <costList><Steel>40</Steel><ComponentIndustrial>1</ComponentIndustrial></costList>
+    <designationCategory>Misc</designationCategory>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <researchPrerequisites><li>MicroelectronicsBasics</li></researchPrerequisites>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>100</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius><glowColor>(10,255,10,1)</glowColor>
+      </li>
+      <li Class="AyameICCT.CompProperties_HoloSignboard">
+        <graphicDataExtra>
+          <texPath>Things/Building/WallHoloSignboard/WallHoloSignboardHologram</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>TransparentPostLight</shaderType>
+          <drawSize>(2.6, 2.6)</drawSize>
+          <drawOffsetNorth>(0,0,1.25)</drawOffsetNorth>
+          <drawOffsetSouth>(0,0,-0.35)</drawOffsetSouth>
+          <drawOffsetWest>(-0.55,0,0.45)</drawOffsetWest>
+          <drawOffsetEast>(0.55,0,0.45)</drawOffsetEast>
+        </graphicDataExtra>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

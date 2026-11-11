@@ -12,7 +12,7 @@ namespace AyameICCT
         internal const string ContactJobDefName = "AyameICCT_ContactRestaurant";
 
         internal static IEnumerable<FloatMenuOption> AppendContactOption(IEnumerable<FloatMenuOption> original,
-            Building_CommsConsole console, Pawn pawn)
+            Building console, Pawn pawn)
         {
             if (original != null)
             {
@@ -32,7 +32,7 @@ namespace AyameICCT
         // ponytail: the shop is a direct service on the console, not a hidden faction or
         // ICommunicable singleton. If it ever needs persistent relations/trade state,
         // that state belongs in a real faction instead of a menu-only shim.
-        private static FloatMenuOption MakeContactOption(Building_CommsConsole console, Pawn pawn)
+        private static FloatMenuOption MakeContactOption(Building console, Pawn pawn)
         {
             if (console == null || pawn == null)
             {
@@ -47,7 +47,7 @@ namespace AyameICCT
             return new FloatMenuOption("AyameICCT_ContactRestaurant".Translate(), () => OrderContact(console, pawn));
         }
 
-        private static string FailureReason(Building_CommsConsole console, Pawn pawn)
+        private static string FailureReason(Building console, Pawn pawn)
         {
             if (!console.Spawned || console.Map == null || console.Map != pawn.Map || !pawn.Spawned)
             {
@@ -57,7 +57,7 @@ namespace AyameICCT
             {
                 return "AyameICCT_ShopUnavailable".Translate();
             }
-            if (!pawn.CanReach(console, PathEndMode.InteractionCell, Danger.Some))
+            if (!pawn.CanReach(console, RestaurantTerminal.ApproachMode(console), Danger.Some))
             {
                 return "CannotUseNoPath".Translate();
             }
@@ -75,14 +75,15 @@ namespace AyameICCT
                 return "CannotUseReason".Translate("IncapableOfCapacity".Translate(
                     PawnCapacityDefOf.Talking.label, pawn.Named("PAWN")));
             }
-            if (!console.CanUseCommsNow || !console.InteractionCell.InBounds(console.Map))
+            if (!RestaurantTerminal.CanUseNow(console)
+                || (console.def.hasInteractionCell && !console.InteractionCell.InBounds(console.Map)))
             {
                 return "AyameICCT_ShopUnavailable".Translate();
             }
             return null;
         }
 
-        private static void OrderContact(Building_CommsConsole console, Pawn pawn)
+        private static void OrderContact(Building console, Pawn pawn)
         {
             JobDef jobDef = DefDatabase<JobDef>.GetNamed(ContactJobDefName, false);
             if (jobDef == null)
@@ -124,7 +125,7 @@ namespace AyameICCT
 
         internal sealed class Dialog_ShopMerchant : Window
         {
-            private readonly Building_CommsConsole console;
+            private readonly Building console;
             private readonly Pawn actor;
             private ShopView view;
             private float granuleSlider;
@@ -132,7 +133,7 @@ namespace AyameICCT
             private float keySlider = ShopPurchase.KeyMin;
             private bool purchaseStarted;
 
-            internal Dialog_ShopMerchant(Building_CommsConsole console, Pawn actor)
+            internal Dialog_ShopMerchant(Building console, Pawn actor)
             {
                 this.console = console;
                 this.actor = actor;
@@ -147,7 +148,7 @@ namespace AyameICCT
 
             public override void DoWindowContents(Rect inRect)
             {
-                if (console == null || actor == null)
+                if (!ShopPurchase.IsContextValid(console, actor))
                 {
                     Close();
                     return;
@@ -360,14 +361,14 @@ namespace AyameICCT
                     out ShopPurchaseFailure failure, out int charged);
                 if (success)
                 {
-                    Messages.Message("AyameICCT_ShopPurchased".Translate(charged), actor,
+                    Messages.Message("AyameICCT_ShopPurchased".Translate(charged), new LookTargets((Thing)actor ?? console),
                         MessageTypeDefOf.PositiveEvent, historical: false);
                     Close();
                     return;
                 }
                 // Every non-success return is guaranteed to precede the first map mutation.
                 purchaseStarted = false;
-                Messages.Message(FailureMessage(failure, quote.Total), actor,
+                Messages.Message(FailureMessage(failure, quote.Total), new LookTargets((Thing)actor ?? console),
                     MessageTypeDefOf.RejectInput, historical: false);
             }
 
