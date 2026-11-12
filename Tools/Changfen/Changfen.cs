@@ -185,8 +185,7 @@ internal static partial class Program
             ["MarketValue"] = plain ? 15f : 1.9f,
             ["Nutrition"] = plain ? 0.5f : 0.05f,
             ["WorkToMake"] = plain ? 300f : 420f,
-            ["DeteriorationRate"] = 10f,
-            ["FoodPoisonChanceFixedHuman"] = 0.02f
+            ["DeteriorationRate"] = 10f
         };
         foreach (var pair in expectedStats)
         {
@@ -194,6 +193,11 @@ internal static partial class Program
                 && Math.Abs(def.GetStatValueAbstract((StatDef)typeof(StatDefOf).GetField(pair.Key)!.GetValue(null)!) - pair.Value) < 0.0001f,
                 name + " XML and runtime stat " + pair.Key);
         }
+        float fixedPoisonChance = def.GetStatValueAbstract(StatDefOf.FoodPoisonChanceFixedHuman);
+        float simpleMealPoisonChance = DefDatabase<ThingDef>.GetNamed("MealSimple").GetStatValueAbstract(StatDefOf.FoodPoisonChanceFixedHuman);
+        Check(xml.Element("statBases")!.Element("FoodPoisonChanceFixedHuman") == null
+            && fixedPoisonChance == 0f && fixedPoisonChance == simpleMealPoisonChance,
+            name + " has zero fixed food-poison chance like MealSimple, while retaining CompFoodPoisonable");
         Check(xml.Element("label")!.Value == (plain ? "plain rice noodle rolls" : "chee cheong fun"), name + " English fallback label");
         Check(xml.Element("graphicData")!.Element("texPath")!.Value == (plain ? "Things/Item/Meal/Changfen" : "Things/Item/Meal/ZhuChangfen")
             && xml.Element("graphicData")!.Element("graphicClass")!.Value == "Graphic_StackCount", name + " texture generator contract");

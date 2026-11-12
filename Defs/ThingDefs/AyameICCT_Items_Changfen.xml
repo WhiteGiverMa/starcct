@@ -20,7 +20,6 @@
       <Nutrition>0.5</Nutrition>
       <WorkToMake>300</WorkToMake>
       <DeteriorationRate>10</DeteriorationRate>
-      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
     </statBases>
     <thingCategories>
       <li>PlantFoodRaw</li>
@@ -65,7 +64,6 @@
       <Nutrition>0.05</Nutrition>
       <WorkToMake>420</WorkToMake>
       <DeteriorationRate>10</DeteriorationRate>
-      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
     </statBases>
     <thingCategories>
       <li>PlantFoodRaw</li>
