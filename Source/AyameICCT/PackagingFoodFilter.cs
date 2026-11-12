@@ -16,7 +16,7 @@ namespace AyameICCT
             return def.category == ThingCategory.Item && def.ingestible != null && !def.IsCorpse
                 && (IsCombatRation(def) || (!def.IsDrug
                     && !def.IsWithinCategory(ThingCategoryDefOf.Drugs)
-                    && !def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw"))
+                    && (!def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw")) || ChangfenIntegration.IsChangfen(def))
                     && ((def.ingestible.foodType & (FoodTypeFlags.Meal | FoodTypeFlags.Processed | FoodTypeFlags.Kibble)) != 0
                         || def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodMeals")))));
         }
@@ -36,7 +36,7 @@ namespace AyameICCT
 
             if (!def.ingestible.HumanEdible || def.IsDrug
                 || def.IsWithinCategory(ThingCategoryDefOf.Drugs)
-                || def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw"))
+                || (def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw")) && !ChangfenIntegration.IsChangfen(def))
                 || !def.IsNutritionGivingIngestible)
             {
                 return false;

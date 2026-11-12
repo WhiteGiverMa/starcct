@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AyameICCT_Make_Changfen.label>制作斋肠粉</AyameICCT_Make_Changfen.label>
+  <AyameICCT_Make_Changfen.description>使用富含淀粉的原料蒸制一份斋肠粉。</AyameICCT_Make_Changfen.description>
+  <AyameICCT_Make_Changfen.jobString>正在制作斋肠粉。</AyameICCT_Make_Changfen.jobString>
+  <AyameICCT_Make_Changfen.ingredients.0.filter.customSummary>淀粉原料</AyameICCT_Make_Changfen.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_Changfen_Bulk.label>批量制作斋肠粉</AyameICCT_Make_Changfen_Bulk.label>
+  <AyameICCT_Make_Changfen_Bulk.description>使用富含淀粉的原料蒸制十份斋肠粉。</AyameICCT_Make_Changfen_Bulk.description>
+  <AyameICCT_Make_Changfen_Bulk.jobString>正在批量制作斋肠粉。</AyameICCT_Make_Changfen_Bulk.jobString>
+  <AyameICCT_Make_Changfen_Bulk.ingredients.0.filter.customSummary>淀粉原料</AyameICCT_Make_Changfen_Bulk.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_ZhuChangfen.label>制作猪肠粉</AyameICCT_Make_ZhuChangfen.label>
+  <AyameICCT_Make_ZhuChangfen.description>使用富含淀粉的原料蒸制十卷猪肠粉。</AyameICCT_Make_ZhuChangfen.description>
+  <AyameICCT_Make_ZhuChangfen.jobString>正在制作猪肠粉。</AyameICCT_Make_ZhuChangfen.jobString>
+  <AyameICCT_Make_ZhuChangfen.ingredients.0.filter.customSummary>淀粉原料</AyameICCT_Make_ZhuChangfen.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_ZhuChangfen_Bulk.label>批量制作猪肠粉</AyameICCT_Make_ZhuChangfen_Bulk.label>
+  <AyameICCT_Make_ZhuChangfen_Bulk.description>使用富含淀粉的原料蒸制一百卷猪肠粉。</AyameICCT_Make_ZhuChangfen_Bulk.description>
+  <AyameICCT_Make_ZhuChangfen_Bulk.jobString>正在批量制作猪肠粉。</AyameICCT_Make_ZhuChangfen_Bulk.jobString>
+  <AyameICCT_Make_ZhuChangfen_Bulk.ingredients.0.filter.customSummary>淀粉原料</AyameICCT_Make_ZhuChangfen_Bulk.ingredients.0.filter.customSummary>
+</LanguageData>

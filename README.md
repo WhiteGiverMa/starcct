@@ -152,6 +152,8 @@ RimWorld 1.7 模组。生产食品级聚丙烯塑料颗粒和片材，将加工�
 
 ## 构建
 
+壁挂全息招牌的地图画面为约 0.23 格深的顶视窄投影；四方向是同一底座与画面的刚性旋转，南向文字倒转、东西向文字随画面转向，不保持朝屏幕上方。完整正面菜单仅用于建造图标。原版附墙、Graphic_Multi 与卸载渲染核查及回归命令见 [旋转修复记录](Tools/HoloSignboard/ROTATION-AUDIT.md)。
+
 塑料贴图的程序化生成入口、隔离预览命令与历史设计材料见 [Tools/Plastic](Tools/Plastic/README.md)。
 
 本机 RimWorld 1.7.4998 rev1299 使用 .NET 10 / Waylith，程序集针对 `net10.0` 构建：
@@ -255,3 +257,41 @@ dotnet build Source/AyameICCT/AyameICCT.csproj -c Release
 
 **未启动游戏**：真实物品图标渲染、堆叠数字角标、右键菜单与商店窗口中的新名字均未在无头环境观察。最小浅测：正常启动后确认密钥图标为绿金房卡、塑料四档与箱装边缘顺滑无锯齿、密钥名称显示为「重构密钥」、商店按钮与购买后提示用新名，并在已有旧存档里确认该物品仍能被识别和使用。
 
+### 无名机械体重命名修复（2026-11-10）
+
+修复收编并复活无名敌方机械体后，点击 RimHUD 或原版检查面板的重命名按钮触发 `Dialog_NamePawn` 空引用的问题。报错位置为原版读取 `pawn.Name.ToStringShort`；重构密钥与原版 `Bill_ResurrectMech` 都不会主动补名字。
+
+现在收编成功时会用 `PawnBioAndNameGenerator.GeneratePawnName(..., NameStyle.Numeric)` 为无名机械体生成原版数字名；`PawnNamingUtility.NamePawnDialog` 的共用前置补丁也会修复旧存档中已经收编的无名机械体。已有自定义名字原样保留，非己方机械体不受影响，复活、修复与绑定流程不变。
+
+真实任务驱动先复现「转阵营后 `Name` 仍为空」的红检，修复后保留全部 **699 项**旧检查并新增 **7 项**名字与 Harmony 挂载检查，共 **706 项通过**；三个改动源码文件诊断干净，最终 Release 构建零警告、零错误。仓库、QA 与安装 DLL SHA256 均为 `25D3549743D174558423C4A488E05E47DF97FC35F12CE721A19095BD0B3A6AB9`。部署时未中止正在运行的游戏，当前进程仍使用旧映像，**下次正常启动才加载修复版**；完整安装备份与同盘旧 DLL 分别保存在 `Temp/opencode/starcct-mech-name-20261110/` 和 `A:/RimWorldBackups/starcct-mech-name-20261110/`。
+
+最小游戏内浅测：下次正常启动并载入出现问题的存档，选中原来那只机械体，点击一次重命名；应当正常打开窗口、不再触发 RimHUD 自动停用，并可保存新名字。
+
+### 全息茶餐厅加盟招牌与崩溃艺术家心情（2026-11-11）
+
+新增立式与挂壁两款可旋转、**可打包卸载安装（`MinifiedThing`）**的茶餐厅电子招牌（均归属 `Misc` 建造分类，研究前置 `MicroelectronicsBasics`，均不设地面操作圈 `hasInteractionCell`）：
+
+1. **立式 2×1：「全息茶餐厅加盟招牌」（`AyameICCT_HoloSignboard`）**
+   * 造价 `80 钢铁 + 2 工业零部件`，耗电 `200W`，带半径 `3` 的亮绿 `CompGlower`。
+   * **全息渲染与槽口衔接修复**：底座采用 `Graphic_Multi`（`drawSize (2.4, 1.6)`），全息投影层由 `CompHoloSignboard` 以 `TransparentPostLight` 着色器叠加绘制（`drawSize (3.8, 3.8)`，南北偏移 `(0, 0, 0.73)`），并将绘制高度 `y` 提升至 `AltitudeLayer.MoteOverhead`，彻底解决贴北墙放置时被北墙截断的问题；全息面板底部增加深入底座黑色发射槽（`y = 676~743`）的发散梯形光束与半透明扫描线涂层，不再悬空脱节。
+   * **菜单画面**：亮绿全息底色配夕阳红「茶餐厅」艺术字，主体为「**番茄炒蛋盖浇饭**」与「**咖喱猪排盖浇饭**」双栏菜单。
+
+2. **挂壁 1×1：「壁挂全息茶餐厅加盟招牌」（`AyameICCT_WallHoloSignboard`）**
+   * 仿原版壁灯 `WallLamp` 贴墙机制（`isAttachment`、`Placeworker_AttachedToWall`、`BuildingOnTop`、`Standable`），造价 `40 钢铁 + 1 工业零部件`，耗电 `100W`。
+   * **顶视窄幅投影与刚性四向旋转**：由 `Tools/HoloSignboard/generate_holo_signboard.py` 生成 9 张 RGBA PNG。`WallHoloSignboard_UI.png` 为完整正面「**黯然销魂饭**」（港式公鸡碗、五片厚切蜜汁叉烧、流心太阳煎蛋、广式菜心与甜豉油米饭）菜单与底座合成图标；地图内四方向贴图（`WallHoloSignboardBase_*` 与 `WallHoloSignboardHologram_*`）采用顶视角（Top-down）窄投影光幕（画面深约 `0.16` 格，含发射光束约 `0.23` 格），以北向（`0°`）为唯一基准，经顺时针 `90°`（东）、`180°`（南）、`270°`（西）刚性旋转生成，确保建筑旋转时底座与全息画面严丝合缝同步旋转。
+
+3. **双路径点单与崩溃艺术家实时心情 Debuff**
+   * **Gizmo 直接点单**：选中己方通电的立式或壁挂招牌，点击底部「联系星际茶餐厅」按钮即可免小人直接打开商店界面购买塑料或重构密钥；失电或太阳耀斑时自动置灰。
+   * **小人右键交互**：移除地面固定操作点大白圈，选中小人右键两款招牌改为 `PathEndMode.Touch` 走至任意相邻可接触格后打开商店（原版通讯台仍走其 `InteractionCell`）。
+   * **崩溃艺术家心情（`AyameICCT_SawStrangeSignboard`）**：拥有 `TorturedArtist` 特质的小人在醒着、未失明、处于任意通电亮起的立式或壁挂招牌 `10` 格内且 `GenSight.LineOfSight` 视线畅通时，获得 `-6` 情境心情「看到奇怪的茶餐厅招牌」（悬停简介：「红绿配，赛狗屁。」）；离开范围、视线被墙体阻挡或招牌断电熄灭时立即失效。
+
+4. **验证与部署**
+   * 运行 `pwsh -File Tools/HoloSignboard/run-qa.ps1`：**939 项离线验证全部通过**（含像素级刚性旋转与窄幅尺寸校验）；全部运行资源已同步部署至 `Mods/starcct`（DLL SHA256 `4CA0A11748B07AD2623A7E34FC588C831EDE002558A5E2CA1E25B4215C3E3184`）。
+
+### 肠粉条与猪肠粉（2026-11-13）
+
+新增 `AyameICCT_Changfen`（肠粉条）与 `AyameICCT_ZhuChangfen`（猪肠粉），可在电力灶和燃料灶使用 4 种普通／批量配方制作。生产入口只接受 `RawPotatoes`、`RawToxipotato`、`RawCorn`、`RawRice` 与软兼容的 `DMSE_Carbohydrate` 五种淀粉原料，不允许把肠粉再次做成肠粉。
+
+两种成品均可直接作为简单餐食食用，也属于 `PlantFoodRaw` 素食烹饪原料，可再烹饪、包装为 `MealSurvivalPack`，或用于 `DMSE_Make_Carbohydrate` 提取碳水化合物，形成「碳水化合物 → 肠粉 → 碳水化合物」彩蛋路径。`StockGenerator_BuyExpensiveSimple` 的窄范围补丁让两者与原版包装生存食品一样可被商人收购。
+
+`Tools/Changfen/generate_changfen.py` 生成 7 张程序化 256×256 PNG；`pwsh -File Tools/Changfen/run-qa.ps1` 保留原有 939 项检查并扩展至 **1,273 项全部通过**，Release 构建零警告、零错误。全部运行文件已部署到 `Mods/starcct` 并逐文件核对 SHA256；DLL SHA256 为 `8343A67FB58EA7210C7FC4B349AD41908221B764DDDBD2B571DA9B8D5BFD92FC`。部署未中止正在运行的游戏，新 DLL 于下次正常启动加载。

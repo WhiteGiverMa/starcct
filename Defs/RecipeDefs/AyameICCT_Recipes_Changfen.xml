@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef>
+    <defName>AyameICCT_Make_Changfen</defName>
+    <label>make plain rice noodle rolls</label>
+    <description>Steam one serving of plain rice noodle rolls from starch-rich ingredients.</description>
+    <jobString>Making plain rice noodle rolls.</jobString>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <workSkill>Cooking</workSkill>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <workAmount>300</workAmount>
+    <recipeUsers>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+    </recipeUsers>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <ingredients>
+      <li>
+        <filter>
+          <customSummary>starch ingredients</customSummary>
+          <thingDefs>
+            <li>RawPotatoes</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+            <li>RawCorn</li>
+            <li>RawRice</li>
+            <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+          </thingDefs>
+        </filter>
+        <count>0.3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <AyameICCT_Changfen>1</AyameICCT_Changfen>
+    </products>
+  </RecipeDef>
+  <RecipeDef>
+    <defName>AyameICCT_Make_Changfen_Bulk</defName>
+    <label>make plain rice noodle rolls x10</label>
+    <description>Steam ten servings of plain rice noodle rolls from starch-rich ingredients.</description>
+    <jobString>Making plain rice noodle rolls x10.</jobString>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <workSkill>Cooking</workSkill>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <workAmount>3000</workAmount>
+    <recipeUsers>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+    </recipeUsers>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <ingredients>
+      <li>
+        <filter>
+          <customSummary>starch ingredients</customSummary>
+          <thingDefs>
+            <li>RawPotatoes</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+            <li>RawCorn</li>
+            <li>RawRice</li>
+            <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <AyameICCT_Changfen>10</AyameICCT_Changfen>
+    </products>
+  </RecipeDef>
+  <RecipeDef>
+    <defName>AyameICCT_Make_ZhuChangfen</defName>
+    <label>make chee cheong fun x10</label>
+    <description>Steam ten chee cheong fun rolls from starch-rich ingredients.</description>
+    <jobString>Making chee cheong fun x10.</jobString>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <workSkill>Cooking</workSkill>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <workAmount>420</workAmount>
+    <recipeUsers>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+    </recipeUsers>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <ingredients>
+      <li>
+        <filter>
+          <customSummary>starch ingredients</customSummary>
+          <thingDefs>
+            <li>RawPotatoes</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+            <li>RawCorn</li>
+            <li>RawRice</li>
+            <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+          </thingDefs>
+        </filter>
+        <count>0.3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <AyameICCT_ZhuChangfen>10</AyameICCT_ZhuChangfen>
+    </products>
+  </RecipeDef>
+  <RecipeDef>
+    <defName>AyameICCT_Make_ZhuChangfen_Bulk</defName>
+    <label>make chee cheong fun x100</label>
+    <description>Steam one hundred chee cheong fun rolls from starch-rich ingredients.</description>
+    <jobString>Making chee cheong fun x100.</jobString>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <workSkill>Cooking</workSkill>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <workAmount>4200</workAmount>
+    <recipeUsers>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+    </recipeUsers>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <ingredients>
+      <li>
+        <filter>
+          <customSummary>starch ingredients</customSummary>
+          <thingDefs>
+            <li>RawPotatoes</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+            <li>RawCorn</li>
+            <li>RawRice</li>
+            <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <thingDefs>
+        <li>RawPotatoes</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">RawToxipotato</li>
+        <li>RawCorn</li>
+        <li>RawRice</li>
+        <li MayRequire="Aoba.DeadManSwitch.Expedition">DMSE_Carbohydrate</li>
+      </thingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <AyameICCT_ZhuChangfen>100</AyameICCT_ZhuChangfen>
+    </products>
+  </RecipeDef>
+</Defs>

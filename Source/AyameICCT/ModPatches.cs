@@ -26,9 +26,13 @@ namespace AyameICCT
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(AfterDefsResolved)));
             harmony.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.GetFoodKind), new[] { typeof(Thing) }),
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(PreparedFoodKind)));
+            harmony.Patch(AccessTools.Method(typeof(StockGenerator_BuyExpensiveSimple), nameof(StockGenerator_BuyExpensiveSimple.HandlesThingDef)),
+                postfix: new HarmonyMethod(typeof(ModPatches), nameof(ChangfenTraderPurchase)));
             harmony.Patch(AccessTools.Method(typeof(Building_CommsConsole), nameof(Building_CommsConsole.GetFloatMenuOptions),
                     new[] { typeof(Pawn) }),
                 postfix: new HarmonyMethod(typeof(ModPatches), nameof(CommsConsoleOptions)));
+            harmony.Patch(AccessTools.Method(typeof(PawnNamingUtility), nameof(PawnNamingUtility.NamePawnDialog)),
+                prefix: new HarmonyMethod(typeof(ModPatches), nameof(NamePawnDialog)));
             installed = true;
         }
 
@@ -38,9 +42,23 @@ namespace AyameICCT
             return CommsConsoleShop.AppendContactOption(__result, __instance, myPawn);
         }
 
+        private static void NamePawnDialog(Pawn pawn)
+        {
+            ReprogrammingKeyUtility.EnsureName(pawn);
+        }
+
         private static void AfterDefsResolved()
         {
+            ChangfenIntegration.Apply();
             PackagingFoodFilter.Apply(AyameICCTMod.Settings);
+        }
+
+        private static void ChangfenTraderPurchase(ThingDef thingDef, ref bool __result)
+        {
+            if (ChangfenIntegration.IsChangfen(thingDef))
+            {
+                __result = true;
+            }
         }
 
         private static void PreparedFoodKind(Thing food, ref FoodKind __result)

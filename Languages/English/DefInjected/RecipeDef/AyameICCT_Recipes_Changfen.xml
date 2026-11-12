@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AyameICCT_Make_Changfen.label>make plain rice noodle rolls</AyameICCT_Make_Changfen.label>
+  <AyameICCT_Make_Changfen.description>Steam one serving of plain rice noodle rolls from starch-rich ingredients.</AyameICCT_Make_Changfen.description>
+  <AyameICCT_Make_Changfen.jobString>Making plain rice noodle rolls.</AyameICCT_Make_Changfen.jobString>
+  <AyameICCT_Make_Changfen.ingredients.0.filter.customSummary>starch ingredients</AyameICCT_Make_Changfen.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_Changfen_Bulk.label>make plain rice noodle rolls x10</AyameICCT_Make_Changfen_Bulk.label>
+  <AyameICCT_Make_Changfen_Bulk.description>Steam ten servings of plain rice noodle rolls from starch-rich ingredients.</AyameICCT_Make_Changfen_Bulk.description>
+  <AyameICCT_Make_Changfen_Bulk.jobString>Making plain rice noodle rolls x10.</AyameICCT_Make_Changfen_Bulk.jobString>
+  <AyameICCT_Make_Changfen_Bulk.ingredients.0.filter.customSummary>starch ingredients</AyameICCT_Make_Changfen_Bulk.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_ZhuChangfen.label>make chee cheong fun x10</AyameICCT_Make_ZhuChangfen.label>
+  <AyameICCT_Make_ZhuChangfen.description>Steam ten chee cheong fun rolls from starch-rich ingredients.</AyameICCT_Make_ZhuChangfen.description>
+  <AyameICCT_Make_ZhuChangfen.jobString>Making chee cheong fun x10.</AyameICCT_Make_ZhuChangfen.jobString>
+  <AyameICCT_Make_ZhuChangfen.ingredients.0.filter.customSummary>starch ingredients</AyameICCT_Make_ZhuChangfen.ingredients.0.filter.customSummary>
+  <AyameICCT_Make_ZhuChangfen_Bulk.label>make chee cheong fun x100</AyameICCT_Make_ZhuChangfen_Bulk.label>
+  <AyameICCT_Make_ZhuChangfen_Bulk.description>Steam one hundred chee cheong fun rolls from starch-rich ingredients.</AyameICCT_Make_ZhuChangfen_Bulk.description>
+  <AyameICCT_Make_ZhuChangfen_Bulk.jobString>Making chee cheong fun x100.</AyameICCT_Make_ZhuChangfen_Bulk.jobString>
+  <AyameICCT_Make_ZhuChangfen_Bulk.ingredients.0.filter.customSummary>starch ingredients</AyameICCT_Make_ZhuChangfen_Bulk.ingredients.0.filter.customSummary>
+</LanguageData>

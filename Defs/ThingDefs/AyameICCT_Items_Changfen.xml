@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MealBaseIngredientless">
+    <defName>AyameICCT_Changfen</defName>
+    <label>plain rice noodle rolls</label>
+    <description>Preliminary drawer-style rice noodle rolls with no filling, no side dishes, and not even a soy sauce packet, commonly known as 'plain changfen'. Soft without sticking, loose without clumping, tender, smooth, and savory.\nIt can be further cooked into other foods, or heated and eaten directly, though it tastes rather plain on its own.\nIts origin in the cosmos is disputed, but rimworld locals independently figured out how to make it.\nAs a refined carbohydrate processed food, it is also hard currency gladly bought by traders.</description>
+    <tradeability>All</tradeability>
+    <graphicData>
+      <texPath>Things/Item/Meal/Changfen</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <stackLimit>75</stackLimit>
+    <tickerType>Rare</tickerType>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>0</Beauty>
+      <Mass>0.22</Mass>
+      <MarketValue>15</MarketValue>
+      <Nutrition>0.5</Nutrition>
+      <WorkToMake>300</WorkToMake>
+      <DeteriorationRate>10</DeteriorationRate>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+    </statBases>
+    <thingCategories>
+      <li>PlantFoodRaw</li>
+    </thingCategories>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+      <li Class="CompProperties_Ingredients">
+        <splitTransferableFoodKind>true</splitTransferableFoodKind>
+        <noIngredientsFoodKind>NonMeat</noIngredientsFoodKind>
+      </li>
+    </comps>
+    <ingestible>
+      <foodType>Meal</foodType>
+      <preferability>MealSimple</preferability>
+      <maxNumToIngestAtOnce>4</maxNumToIngestAtOnce>
+      <ingestEffect>EatVegetarian</ingestEffect>
+      <ingestSound>Meal_Eat</ingestSound>
+      <optimalityOffsetHumanlikes>16</optimalityOffsetHumanlikes>
+      <optimalityOffsetFeedingAnimals>-25</optimalityOffsetFeedingAnimals>
+    </ingestible>
+  </ThingDef>
+  <ThingDef ParentName="MealBaseIngredientless">
+    <defName>AyameICCT_ZhuChangfen</defName>
+    <label>chee cheong fun</label>
+    <description>Preliminary rolled rice noodles with no filling, side dishes, or sauce. The rice sheet is white as snow, thin as paper, and as tender and smooth as a young girl's skin.\nIt can be further cooked into other foods, and pairs well with chili soy sauce or sweet sauces.\nIt can also be heated and eaten directly, though it tastes rather plain on its own.\nAs a refined carbohydrate processed food, it is also hard currency gladly bought by traders.</description>
+    <tradeability>All</tradeability>
+    <graphicData>
+      <texPath>Things/Item/Meal/ZhuChangfen</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <stackLimit>75</stackLimit>
+    <tickerType>Rare</tickerType>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>0</Beauty>
+      <Mass>0.03</Mass>
+      <MarketValue>1.9</MarketValue>
+      <Nutrition>0.05</Nutrition>
+      <WorkToMake>420</WorkToMake>
+      <DeteriorationRate>10</DeteriorationRate>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+    </statBases>
+    <thingCategories>
+      <li>PlantFoodRaw</li>
+    </thingCategories>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+      <li Class="CompProperties_Ingredients">
+        <splitTransferableFoodKind>true</splitTransferableFoodKind>
+        <noIngredientsFoodKind>NonMeat</noIngredientsFoodKind>
+      </li>
+    </comps>
+    <ingestible>
+      <foodType>Meal</foodType>
+      <preferability>MealSimple</preferability>
+      <maxNumToIngestAtOnce>20</maxNumToIngestAtOnce>
+      <ingestEffect>EatVegetarian</ingestEffect>
+      <ingestSound>Meal_Eat</ingestSound>
+      <optimalityOffsetHumanlikes>16</optimalityOffsetHumanlikes>
+      <optimalityOffsetFeedingAnimals>-25</optimalityOffsetFeedingAnimals>
+    </ingestible>
+  </ThingDef>
+</Defs>

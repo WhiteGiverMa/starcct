@@ -26,6 +26,14 @@ namespace AyameICCT
             return true;
         }
 
+        internal static void EnsureName(Pawn mech)
+        {
+            if (mech != null && mech.Name == null && mech.RaceProps.IsMechanoid && mech.Faction == Faction.OfPlayer)
+            {
+                mech.Name = PawnBioAndNameGenerator.GeneratePawnName(mech, NameStyle.Numeric);
+            }
+        }
+
         internal static int CountInventory(Pawn pawn, ThingDef keyDef, int limit)
         {
             int count = 0;

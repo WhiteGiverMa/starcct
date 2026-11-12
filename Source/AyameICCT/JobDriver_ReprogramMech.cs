@@ -454,6 +454,7 @@ namespace AyameICCT
                 return;
             }
             Corpse.InnerPawn.SetFactionDirect(Faction.OfPlayer);
+            ReprogrammingKeyUtility.EnsureName(Corpse.InnerPawn);
             int remaining = requiredCost;
             foreach (Thing key in pawn.inventory.innerContainer.ToList())
             {
