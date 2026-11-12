@@ -24,7 +24,26 @@ $text = $text.Replace('<ItemGroup>', '<ItemGroup><Compile Include="' + (Join-Pat
 Set-Content $project $text -Encoding utf8
 $program = Join-Path $WorkDir 'Program.cs'
 $text = (Get-Content $program -Raw).Replace('        Console.WriteLine("QA passed:', "        TestChangfen();`n        Console.WriteLine(`"QA passed:")
+$text = $text.Replace('defName = "AyameICCT_PlasticSheet", label = "食品级塑料片", thingClass = typeof(ThingWithComps), category = ThingCategory.Item, useHitPoints = false, stackLimit = 75',
+    'defName = "AyameICCT_PlasticSheet", label = "食品级塑料片", thingClass = typeof(ThingWithComps), category = ThingCategory.Item, useHitPoints = false, stackLimit = 320')
 Set-Content $program $text -Encoding utf8
+$shop = Join-Path $WorkDir 'Shop.cs'
+$text = Get-Content $shop -Raw
+$text = $text.Replace('contents.innerContainer.Count(t => t.def == shopSheetDef) == 7',
+    'contents.innerContainer.Count(t => t.def == shopSheetDef) == 2')
+$text = $text.Replace('goods are packed as legal 500-granule and 75-sheet stacks',
+    'goods are packed as legal 500-granule and 320-sheet stacks')
+$text = $text.Replace('maximum order: one pod with 40 + 267 legal stacks',
+    'maximum order: one pod with 40 + 63 legal stacks')
+$text = $text.Replace('bigContents.innerContainer.Count(t => t.def == shopSheetDef) == 267',
+    'bigContents.innerContainer.Count(t => t.def == shopSheetDef) == 63')
+$text = $text.Replace('maximum order is 40 granule stacks plus 267 sheet stacks, never 40000 Things',
+    'maximum order is 40 granule stacks plus 63 sheet stacks, never 40000 Things')
+$text = $text.Replace('bigContents.innerContainer.Where(t => t.def == shopSheetDef).Take(266).All(t => t.stackCount == 75)',
+    'bigContents.innerContainer.Where(t => t.def == shopSheetDef).Take(62).All(t => t.stackCount == 320)')
+$text = $text.Replace('bigContents.innerContainer.Where(t => t.def == shopSheetDef).Last().stackCount == 50',
+    'bigContents.innerContainer.Where(t => t.def == shopSheetDef).Last().stackCount == 160')
+Set-Content $shop $text -Encoding utf8
 $env:EXPERIMENT_QA_CASE = 'all'
 $env:REPROGRAM_QA_CASE = 'all'
 $env:SHOP_QA_CASE = 'all'

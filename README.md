@@ -290,8 +290,8 @@ dotnet build Source/AyameICCT/AyameICCT.csproj -c Release
 
 ### 肠粉条与猪肠粉（2026-11-13）
 
-新增 `AyameICCT_Changfen`（肠粉条）与 `AyameICCT_ZhuChangfen`（猪肠粉），可在电力灶和燃料灶使用 4 种普通／批量配方制作。生产入口只接受 `RawPotatoes`、`RawToxipotato`、`RawCorn`、`RawRice` 与软兼容的 `DMSE_Carbohydrate` 五种淀粉原料，不允许把肠粉再次做成肠粉。
+新增 `AyameICCT_Changfen`（肠粉条）与 `AyameICCT_ZhuChangfen`（猪肠粉），默认堆叠上限分别为 **75** 与 **300**，可在电力灶和燃料灶使用 4 种普通／批量配方制作；`AyameICCT_PlasticSheet`（食品级塑料片材）的默认堆叠上限同步调整为 **320**。生产入口只接受 `RawPotatoes`、`RawToxipotato`、`RawCorn`、`RawRice` 与软兼容的 `DMSE_Carbohydrate` 五种淀粉原料，不允许把肠粉再次做成肠粉。
 
-两种成品均可直接作为简单餐食食用，固定食物中毒率与原版熟食一样为 0，同时保留厨房卫生与厨师失败导致的中毒机制；它们也属于 `PlantFoodRaw` 素食烹饪原料，可再烹饪、包装为 `MealSurvivalPack`，或用于 `DMSE_Make_Carbohydrate` 提取碳水化合物，形成「碳水化合物 → 肠粉 → 碳水化合物」彩蛋路径。`StockGenerator_BuyExpensiveSimple` 的窄范围补丁让两者与原版包装生存食品一样可被商人收购。
+两种成品均可直接作为简单餐食食用，固定食物中毒率与原版熟食一样为 0，同时保留厨房卫生与厨师失败导致的中毒机制；它们也属于 `PlantFoodRaw` 素食烹饪原料，可再烹饪、包装为 `MealSurvivalPack`，或用于 `DMSE_Make_Carbohydrate` 提取碳水化合物，形成「碳水化合物 → 肠粉 → 碳水化合物」彩蛋路径。两者通过 `<thingCategories Inherit="False"><li>PlantFoodRaw</li></thingCategories>` 取代父类的 `FoodMeals` 分类列表，使 `FirstThingCategory` 为 `PlantFoodRaw`：OgreStack 将其归入「素食／RawFoodPlant」而非「烹饪食品／Meal」，并避免在 `Foods` 下重复计数。`StockGenerator_BuyExpensiveSimple` 的窄范围补丁让两者与原版包装生存食品一样可被商人收购。
 
-`Tools/Changfen/generate_changfen.py` 生成 7 张程序化 256×256 PNG；`pwsh -File Tools/Changfen/run-qa.ps1` 保留原有 939 项检查并扩展至 **1,273 项全部通过**，Release 构建零警告、零错误。全部运行文件已部署到 `Mods/starcct` 并逐文件核对 SHA256；DLL SHA256 为 `E6084D00EC5A0CFD0B60A883A65AA372893616D540E1B658B0DAA0D3155DBE49`。部署未中止正在运行的游戏，新 DLL 于下次正常启动加载。
+`Tools/Changfen/generate_changfen.py` 生成 7 张程序化 256×256 PNG；`pwsh -File Tools/Changfen/run-qa.ps1` 保留原有 939 项检查并扩展至 **1,273 项全部通过**，Release 构建零警告、零错误。全部运行文件已部署到 `Mods/starcct` 并逐文件核对 SHA256；DLL SHA256 为 `33225F3D806A16B4EC5A054D8E2D322769944EDD1A6743C182603A16DB9149CE`。部署未中止正在运行的游戏，新 DLL 于下次正常启动加载。

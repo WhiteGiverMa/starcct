@@ -34,7 +34,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
       <drawSize>0.90</drawSize>
     </graphicData>
-    <stackLimit>75</stackLimit>
+    <stackLimit>320</stackLimit>
     <healthAffectsPrice>false</healthAffectsPrice>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>

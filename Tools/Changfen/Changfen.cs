@@ -130,8 +130,7 @@ internal static partial class Program
             texPath = xml.Element("graphicData")!.Element("texPath")!.Value,
             graphicClass = typeof(Graphic_StackCount)
         };
-        def.thingCategories = xml.Element("thingCategories")!.Elements("li")
-            .Select(x => DefDatabase<ThingCategoryDef>.GetNamed(x.Value)).ToList();
+        def.thingCategories = ResolveChangfenThingCategories(xml, allDefinitions);
         def.statBases = xml.Element("statBases")!.Elements().Select(stat => new StatModifier
         {
             stat = (StatDef)typeof(StatDefOf).GetField(stat.Name.LocalName, BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!,
@@ -172,6 +171,21 @@ internal static partial class Program
         return chain;
     }
 
+    private static List<ThingCategoryDef> ResolveChangfenThingCategories(XElement xml, List<XElement> allDefinitions)
+    {
+        var inheritedNodes = new List<XElement>();
+        foreach (XElement current in ChangfenThingChain(xml, allDefinitions))
+        {
+            XElement? categories = current.Element("thingCategories");
+            if (categories == null) continue;
+            inheritedNodes.Add(categories);
+            if (string.Equals((string?)categories.Attribute("Inherit"), "False", StringComparison.OrdinalIgnoreCase)) break;
+        }
+        inheritedNodes.Reverse();
+        return inheritedNodes.SelectMany(node => node.Elements("li"))
+            .Select(node => DefDatabase<ThingCategoryDef>.GetNamed(node.Value)).ToList();
+    }
+
     private static void TestChangfenItemXml(XElement xml, ThingDef def, List<XElement> allDefinitions)
     {
         string name = def.defName;
@@ -201,10 +215,15 @@ internal static partial class Program
         Check(xml.Element("label")!.Value == (plain ? "plain rice noodle rolls" : "chee cheong fun"), name + " English fallback label");
         Check(xml.Element("graphicData")!.Element("texPath")!.Value == (plain ? "Things/Item/Meal/Changfen" : "Things/Item/Meal/ZhuChangfen")
             && xml.Element("graphicData")!.Element("graphicClass")!.Value == "Graphic_StackCount", name + " texture generator contract");
-        Check(def.stackLimit == 75 && def.tradeability == Tradeability.All && def.tickerType == TickerType.Rare, name + " stack, tradeability and ticker");
-        Check(xml.Element("thingCategories")!.Elements("li").Select(x => x.Value).SequenceEqual(new[] { "PlantFoodRaw" })
+        Check(def.stackLimit == (plain ? 75 : 300) && def.tradeability == Tradeability.All && def.tickerType == TickerType.Rare, name + " stack, tradeability and ticker");
+        Check(string.Equals((string?)xml.Element("thingCategories")!.Attribute("Inherit"), "False", StringComparison.OrdinalIgnoreCase)
+            && xml.Element("thingCategories")!.Elements("li").Select(x => x.Value).SequenceEqual(new[] { "PlantFoodRaw" })
+            && def.thingCategories.SequenceEqual(new[] { ThingCategoryDefOf.PlantFoodRaw })
+            && def.FirstThingCategory == ThingCategoryDefOf.PlantFoodRaw
+            && !def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodMeals"))
             && def.IsWithinCategory(ThingCategoryDefOf.PlantFoodRaw)
-            && def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw")), name + " is a PlantFoodRaw downstream cooking ingredient");
+            && def.IsWithinCategory(DefDatabase<ThingCategoryDef>.GetNamed("FoodRaw")),
+            name + " resolves only PlantFoodRaw first for OgreStack RawFoodPlant, without FoodMeals inheritance");
         var ingest = xml.Element("ingestible")!;
         Check(def.ingestible.foodType == FoodTypeFlags.Meal && def.ingestible.preferability == FoodPreferability.MealSimple
             && ingest.Element("foodType")!.Value == "Meal" && ingest.Element("preferability")!.Value == "MealSimple", name + " simple-meal edibility");

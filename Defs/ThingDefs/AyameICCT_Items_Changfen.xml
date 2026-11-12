@@ -21,7 +21,7 @@
       <WorkToMake>300</WorkToMake>
       <DeteriorationRate>10</DeteriorationRate>
     </statBases>
-    <thingCategories>
+    <thingCategories Inherit="False">
       <li>PlantFoodRaw</li>
     </thingCategories>
     <comps>
@@ -53,7 +53,7 @@
       <texPath>Things/Item/Meal/ZhuChangfen</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
-    <stackLimit>75</stackLimit>
+    <stackLimit>300</stackLimit>
     <tickerType>Rare</tickerType>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
@@ -65,7 +65,7 @@
       <WorkToMake>420</WorkToMake>
       <DeteriorationRate>10</DeteriorationRate>
     </statBases>
-    <thingCategories>
+    <thingCategories Inherit="False">
       <li>PlantFoodRaw</li>
     </thingCategories>
     <comps>
